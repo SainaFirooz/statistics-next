@@ -18,7 +18,7 @@ async function GET(req: NextRequest) {
       to
     );
     return NextResponse.json(result);
-  } catch (error: any) {
+  } catch (error) {
     return handleError(error);
   }
 }

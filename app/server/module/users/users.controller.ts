@@ -3,11 +3,10 @@ import { parseQueryParams } from "../../utils/request";
 import { handleError } from "../../utils/errorHandler";
 import { dateValidator } from "../../utils/dateValidator";
 import { userService } from "./users.repository";
-import { CustomError } from "../../utils/customError";
 
 async function GET(req: NextRequest) {
   try {
-    // throw new CustomError("asdfkjsnfks", 404);
+    // throw new CustomError("Boo", 500);
     const query = parseQueryParams(req);
 
     const { from, to } = dateValidator(
@@ -17,7 +16,7 @@ async function GET(req: NextRequest) {
 
     const result = await userService.countUsers(from, to);
     return NextResponse.json(result);
-  } catch (error: any) {
+  } catch (error) {
     return handleError(error);
   }
 }

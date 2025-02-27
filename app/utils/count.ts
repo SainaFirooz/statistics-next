@@ -16,16 +16,20 @@ export const fetchData = async (url: string, dateRange: DateRange) => {
   try {
     const response = await api.get(apiURL);
     return response.data;
-  } catch (error: any) {
+  } catch (error) {
     let message = "Something went wrong. Please try again.";
-    if (error.status === 404) {
-      message = "Invalid request. Please check and try again.";
-    }
-    if (error.status === 400) {
-      message = "Not found. The page or resource is missing.";
-    }
-    if (error.status === 500) {
-      message = "Server error. Please try again later.";
+    if (error instanceof Error) {
+      const apiError = error as Error & { status?: number };
+
+      if (apiError.status === 404) {
+        message = "Invalid request. Please check and try again.";
+      }
+      if (apiError.status === 400) {
+        message = "Not found. The page or resource is missing.";
+      }
+      if (apiError.status === 500) {
+        message = "Server error. Please try again later.";
+      }
     }
     throw new Error(message);
   }

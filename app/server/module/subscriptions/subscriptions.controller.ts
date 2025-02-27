@@ -3,9 +3,12 @@ import { parseQueryParams } from "../../utils/request";
 import { handleError } from "../../utils/errorHandler";
 import { dateValidator } from "../../utils/dateValidator";
 import { notificationSubscriptionsService } from "./subscriptions.repository";
+import { CustomError } from "../../utils/customError";
 
 async function GET(req: NextRequest) {
   try {
+    throw new CustomError("Boo", 505);
+
     const query = parseQueryParams(req);
 
     const { from, to } = dateValidator(
@@ -18,7 +21,7 @@ async function GET(req: NextRequest) {
       to
     );
     return NextResponse.json(result);
-  } catch (error: any) {
+  } catch (error) {
     return handleError(error);
   }
 }

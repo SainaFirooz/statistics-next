@@ -11,6 +11,8 @@ import { IncidentMessagesChart } from "../components/incidentMessages/IncidentMe
 import { WeeklyDataTable } from "../components/weeklyData/WeeklyDataTable";
 import { WeeklyDataChart } from "../components/weeklyData/WeeklyDataChart";
 
+export const dynamic = "force-dynamic";
+
 export default async function DashboardPage() {
   const dateRange = {
     from: new Date("2018-01-01"),

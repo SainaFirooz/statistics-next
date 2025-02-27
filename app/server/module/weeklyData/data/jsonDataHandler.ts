@@ -18,6 +18,7 @@ async function ensureFileExists() {
     await fs.access(dataFilePath);
     console.log(dataFilePath);
   } catch (error) {
+    console.error(error);
     await fs.writeFile(dataFilePath, JSON.stringify([], null, 2));
   }
 }
@@ -32,7 +33,7 @@ export async function getAllWeeklyData(): Promise<WeeklyDataType[]> {
     );
 
     return jsonData;
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error reading data.json:", error);
     return [];
   }
@@ -54,7 +55,7 @@ export async function updateJsonFile(newData: WeeklyDataType) {
     jsonData.push(newData);
 
     await fs.writeFile(dataFilePath, JSON.stringify(jsonData, null, 2));
-  } catch (error: any) {
+  } catch (error) {
     console.error("Error updating data.json:", error);
   }
 }

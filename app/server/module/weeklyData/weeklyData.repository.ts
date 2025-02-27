@@ -1,5 +1,3 @@
-import prisma from "../../config/prisma";
-import { buildDateRangeQuery } from "../../utils/dateRangeQuery";
 import { getAllWeeklyData } from "./data/jsonDataHandler";
 import { WeeklyDataType } from "./weeklyData.types";
 

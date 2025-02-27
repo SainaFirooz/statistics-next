@@ -15,7 +15,7 @@ async function GET(req: NextRequest) {
 
     const result = await notificationQueueService.sumUserIds(from, to);
     return NextResponse.json(result);
-  } catch (error: any) {
+  } catch (error) {
     return handleError(error);
   }
 }
