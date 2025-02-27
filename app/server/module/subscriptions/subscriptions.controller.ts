@@ -3,7 +3,6 @@ import { parseQueryParams } from "../../utils/request";
 import { handleError } from "../../utils/errorHandler";
 import { dateValidator } from "../../utils/dateValidator";
 import { notificationSubscriptionsService } from "./subscriptions.repository";
-import { CustomError } from "../../utils/customError";
 
 async function GET(req: NextRequest) {
   try {

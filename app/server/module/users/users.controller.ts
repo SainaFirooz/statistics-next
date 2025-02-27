@@ -6,7 +6,6 @@ import { userService } from "./users.repository";
 
 async function GET(req: NextRequest) {
   try {
-    // throw new CustomError("Boo", 500);
     const query = parseQueryParams(req);
 
     const { from, to } = dateValidator(
