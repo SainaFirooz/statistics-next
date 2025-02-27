@@ -7,8 +7,6 @@ import { CustomError } from "../../utils/customError";
 
 async function GET(req: NextRequest) {
   try {
-    throw new CustomError("Boo", 505);
-
     const query = parseQueryParams(req);
 
     const { from, to } = dateValidator(
