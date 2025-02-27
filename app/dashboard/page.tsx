@@ -11,7 +11,7 @@ import { IncidentMessagesChart } from "../components/incidentMessages/IncidentMe
 import { WeeklyDataTable } from "../components/weeklyData/WeeklyDataTable";
 import { WeeklyDataChart } from "../components/weeklyData/WeeklyDataChart";
 
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 export default async function DashboardPage() {
   const dateRange = {
@@ -25,7 +25,6 @@ export default async function DashboardPage() {
         <WeeklyDataTable dateRange={dateRange} />
       </Suspense>
       <br></br>
-
       <Suspense fallback={<Loading />}>
         <WeeklyDataChart dateRange={dateRange} />
       </Suspense>

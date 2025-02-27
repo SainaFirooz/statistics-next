@@ -12,9 +12,9 @@ export const dateValidator = (from?: string, to?: string) => {
     if (
       error.details.some((detail) => detail.message.includes("greater than"))
     ) {
-      throw new Error("toDate cannot be earlier than fromDate");
+      return new Error("toDate cannot be earlier than fromDate");
     }
-    throw new Error("Invalid date input");
+    return new Error("Invalid date input");
   }
 
   return value;
