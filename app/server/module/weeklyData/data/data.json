@@ -1,0 +1,191 @@
+[
+  {
+    "toDate": "2024-07-22",
+    "subscriptions": 709,
+    "vyMessages": 660,
+    "sentNotifications": 0.83,
+    "users": 2320
+  },
+  {
+    "toDate": "2024-07-29",
+    "subscriptions": 794,
+    "vyMessages": 914,
+    "sentNotifications": 1.87,
+    "users": 2791
+  },
+  {
+    "toDate": "2024-08-05",
+    "subscriptions": 966,
+    "vyMessages": 1125,
+    "sentNotifications": 1.93,
+    "users": 3417
+  },
+  {
+    "toDate": "2024-08-12",
+    "subscriptions": 1076,
+    "vyMessages": 1349,
+    "sentNotifications": 1.52,
+    "users": 3782
+  },
+  {
+    "toDate": "2024-08-19",
+    "subscriptions": 1226,
+    "vyMessages": 1581,
+    "sentNotifications": 2.31,
+    "users": 4131
+  },
+  {
+    "toDate": "2024-08-26",
+    "subscriptions": 1317,
+    "vyMessages": 1839,
+    "sentNotifications": 3.31,
+    "users": 4580
+  },
+  {
+    "toDate": "2024-09-02",
+    "subscriptions": 1402,
+    "vyMessages": 2060,
+    "sentNotifications": 2.36,
+    "users": 4925
+  },
+  {
+    "toDate": "2024-09-09",
+    "subscriptions": 1497,
+    "vyMessages": 2309,
+    "sentNotifications": 2.58,
+    "users": 5292
+  },
+  {
+    "toDate": "2024-09-16",
+    "subscriptions": 1567,
+    "vyMessages": 2521,
+    "sentNotifications": 2.02,
+    "users": 5555
+  },
+  {
+    "toDate": "2024-09-23",
+    "subscriptions": 1607,
+    "vyMessages": 2651,
+    "sentNotifications": 1.11,
+    "users": 5872
+  },
+  {
+    "toDate": "2024-09-30",
+    "subscriptions": 1652,
+    "vyMessages": 2854,
+    "sentNotifications": 1.56,
+    "users": 6193
+  },
+  {
+    "toDate": "2024-10-07",
+    "subscriptions": 1706,
+    "vyMessages": 3017,
+    "sentNotifications": 2.07,
+    "users": 6467
+  },
+  {
+    "toDate": "2024-10-14",
+    "subscriptions": 1804,
+    "vyMessages": 3162,
+    "sentNotifications": 1.94,
+    "users": 6806
+  },
+  {
+    "toDate": "2024-10-21",
+    "subscriptions": 1878,
+    "vyMessages": 3331,
+    "sentNotifications": 2.59,
+    "users": 7084
+  },
+  {
+    "toDate": "2024-10-28",
+    "subscriptions": 1923,
+    "vyMessages": 3585,
+    "sentNotifications": 3.79,
+    "users": 7378
+  },
+  {
+    "toDate": "2024-11-04",
+    "subscriptions": 1995,
+    "vyMessages": 3781,
+    "sentNotifications": 2.9,
+    "users": 7721
+  },
+  {
+    "toDate": "2024-11-11",
+    "subscriptions": 2035,
+    "vyMessages": 3988,
+    "sentNotifications": 3.3,
+    "users": 7977
+  },
+  {
+    "toDate": "2024-11-18",
+    "subscriptions": 2073,
+    "vyMessages": 4192,
+    "sentNotifications": 3.11,
+    "users": 8230
+  },
+  {
+    "toDate": "2024-11-25",
+    "subscriptions": 2278,
+    "vyMessages": 4543,
+    "sentNotifications": 2.3,
+    "users": 8660
+  },
+  {
+    "toDate": "2024-12-02",
+    "subscriptions": 2308,
+    "vyMessages": 4729,
+    "sentNotifications": 1.41,
+    "users": 8913
+  },
+  {
+    "toDate": "2024-12-09",
+    "subscriptions": 2360,
+    "vyMessages": 4929,
+    "sentNotifications": 2.68,
+    "users": 9155
+  },
+  {
+    "toDate": "2024-12-16",
+    "subscriptions": 2411,
+    "vyMessages": 5182,
+    "sentNotifications": 5.63,
+    "users": 9410
+  },
+  {
+    "toDate": "2024-12-23",
+    "subscriptions": 2514,
+    "vyMessages": 5479,
+    "sentNotifications": 9.05,
+    "users": 9807
+  },
+  {
+    "toDate": "2024-12-30",
+    "subscriptions": 2533,
+    "vyMessages": 5607,
+    "sentNotifications": 1.97,
+    "users": 10110
+  },
+  {
+    "toDate": "2025-01-06",
+    "subscriptions": 2641,
+    "vyMessages": 5858,
+    "sentNotifications": 3.59,
+    "users": 10533
+  },
+  {
+    "toDate": "2025-01-13",
+    "subscriptions": 2763,
+    "vyMessages": 6255,
+    "sentNotifications": 8.76,
+    "users": 10907
+  },
+  {
+    "toDate": "2025-01-20",
+    "subscriptions": 2845,
+    "vyMessages": 6511,
+    "sentNotifications": 3.73,
+    "users": 11237
+  }
+]
