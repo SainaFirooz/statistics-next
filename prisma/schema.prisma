@@ -1,0 +1,222 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model FilteredTrainNumbers {
+  id         String   @id
+  fromNumber Int
+  toNumber   Int
+  trainLine  String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime
+}
+
+model NotificationQueue {
+  id         String   @id
+  incidentId String
+  userIds    String[]
+  text       String
+  processed  Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime
+
+  @@index([createdAt])
+  @@index([processed, createdAt])
+}
+
+model TrainLineDelayedPercentage {
+  lineName      String   @id
+  trainsRunning Int
+  trainsDelayed Int
+  percentage    Int
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @default(now())
+}
+
+model VyNotificationCache {
+  uuid                 String                 @id
+  version              Int?
+  nominalDate          String?
+  trainId              String?
+  lineId               String?
+  createdAt            DateTime               @default(now())
+  updatedAt            DateTime
+  type                 String?
+  state                String?
+  text                 String?
+  trainIdWithOperator  String?
+  lineName             String?
+  toStop               Json?
+  processed            Boolean                @default(false)
+  fromStop             Json?
+  action               String?
+  vytogGeneralMessages vytogGeneralMessages[]
+
+  @@index([nominalDate])
+  @@index([processed])
+  @@index([trainIdWithOperator, nominalDate])
+  @@index([trainIdWithOperator, processed])
+}
+
+model countyNumber {
+  id            Int             @id
+  name          String
+  trainStations trainStations[]
+}
+
+model notificationSubscriptions {
+  id                        String                      @id
+  trainNumber               String?
+  fromStation               String?
+  toStation                 String?
+  deviceId                  String
+  days                      Int[]
+  fromTime                  String?
+  toTime                    String?
+  createdAt                 DateTime                    @default(now())
+  updatedAt                 DateTime                    @default(now())
+  pushNotification          Boolean                     @default(false)
+  latestMessage             String?                     @db.VarChar(1500)
+  lineName                  String[]
+  allStations               String[]
+  trainIds                  String[]
+  users                     users                       @relation(fields: [deviceId], references: [deviceId], onDelete: Cascade)
+  vytogNotificationMessages vytogNotificationMessages[]
+
+  @@index([days, trainIds], type: Gin)
+  @@index([deviceId])
+  @@index([fromStation])
+  @@index([toStation])
+  @@index([trainIds], type: Gin)
+  @@index([trainNumber])
+}
+
+model tokenSession {
+  id           String   @id
+  access_token String   @db.VarChar(1500)
+  expires_in   Int
+  token_type   String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime
+}
+
+model trainAnnouncement {
+  ActivityId                 String        @unique
+  ActivityType               String
+  AdvertisedTimeAtLocation   DateTime?
+  EstimatedTimeAtLocation    DateTime?
+  ScheduledDepartureDateTime String
+  AdvertisedTrainIdent       String
+  Canceled                   Boolean
+  Deleted                    Boolean
+  Deviation                  Json?
+  TimeAtLocation             DateTime?
+  FromLocationSignature      String
+  LocationSignature          String
+  InformationOwner           String
+  ModifiedTime               DateTime?
+  ToLocationSignature        String
+  ViaLocationCode            String[]
+  Weekday                    Int?
+  TrainStatus                String?
+  LineName                   String?
+  TrackAtLocation            String?
+  ExternalText               String?
+  InternalText               String?
+  SmsText                    String?
+  WebText                    String?
+  LocationName               String?
+  FromLocationName           String?
+  ToLocationName             String?
+  CreatedAt                  DateTime      @default(now())
+  UpdatedAt                  DateTime
+  AppText                    String?
+  TrainId                    String        @default("12345")
+  TransportType              TransportEnum @default(TRAIN)
+  trainStations              trainStations @relation(fields: [LocationSignature], references: [LocationSignature], onDelete: Cascade)
+
+  @@index([AdvertisedTrainIdent, ScheduledDepartureDateTime, AdvertisedTimeAtLocation])
+  @@index([AdvertisedTrainIdent])
+  @@index([LocationName, ScheduledDepartureDateTime, AdvertisedTimeAtLocation])
+  @@index([TimeAtLocation])
+  @@index([ToLocationSignature, FromLocationSignature])
+}
+
+model trainMessage {
+  EventId                                String    @id
+  CountyNo                               Int[]
+  Deleted                                Boolean
+  ExternalDescription                    String    @db.VarChar(1500)
+  Geometry                               Json?
+  Header                                 String?
+  ReasonCode                             Json?
+  TrafficImpact                          Json?
+  StartDateTime                          DateTime
+  PrognosticatedEndDateTimeTrafficImpact DateTime?
+  LastUpdateDateTime                     DateTime
+  ModifiedTime                           DateTime
+  EndDateTime                            DateTime?
+  createdAt                              DateTime  @default(now())
+  updatedAt                              DateTime  @default(now())
+}
+
+model trainStations {
+  LocationSignature       String              @id
+  AdvertisedLocationName  String
+  CountyNo                Int
+  LocationInformationText String?
+  createdAt               DateTime            @default(now())
+  updatedAt               DateTime            @default(now())
+  trainAnnouncement       trainAnnouncement[]
+  countyNumber            countyNumber        @relation(fields: [CountyNo], references: [id], onDelete: Cascade)
+  users                   users[]
+}
+
+model users {
+  deviceId                  String                      @id
+  favoriteTrains            String[]
+  createdAt                 DateTime                    @default(now())
+  updatedAt                 DateTime                    @default(now())
+  notificationSubscriptions notificationSubscriptions[]
+  trainStations             trainStations[]
+  vytogNotificationMessages vytogNotificationMessages[]
+}
+
+model vytogGeneralMessages {
+  uuid                    String              @id
+  version                 Int
+  state                   String
+  createdAt               DateTime            @default(now())
+  updatedAt               DateTime
+  type                    String
+  text                    String
+  affectedLegs            Json?
+  incidentId              String              @unique
+  stretchName             String
+  vyNotificationCacheUuid String
+  VyNotificationCache     VyNotificationCache @relation(fields: [vyNotificationCacheUuid], references: [uuid])
+}
+
+model vytogNotificationMessages {
+  id                        String                     @id
+  trainNumber               String
+  message                   String?                    @db.VarChar(1500)
+  trainStatus               String
+  createdAt                 DateTime                   @default(now())
+  updatedAt                 DateTime
+  subscriptionId            String?
+  nominalDate               DateTime                   @default(now())
+  notificationSubscriptions notificationSubscriptions? @relation(fields: [subscriptionId], references: [id])
+  users                     users[]
+}
+
+enum TransportEnum {
+  TRAIN
+  BUS
+  TAXI
+}
