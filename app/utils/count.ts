@@ -31,6 +31,6 @@ export const fetchData = async (url: string, dateRange: DateRange) => {
         message = "Server error. Please try again later.";
       }
     }
-    throw new Error(message);
+    return message;
   }
 };
