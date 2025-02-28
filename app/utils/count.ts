@@ -23,14 +23,15 @@ export const fetchData = async <T>(
     const response = await api.get<T>(apiURL);
     return { success: true, data: response.data };
   } catch (error) {
+    console.error("API Error:", error);
     let message = "Something went wrong. Please try again.";
     if (error instanceof Error) {
       const apiError = error as Error & { status?: number };
 
-      if (apiError.status === 404) {
+      if (apiError.status === 400) {
         message = "Invalid request. Please check and try again.";
       }
-      if (apiError.status === 400) {
+      if (apiError.status === 404) {
         message = "Not found. The page or resource is missing.";
       }
       if (apiError.status === 500) {
