@@ -1,4 +1,4 @@
-import { fetchData } from "@/app/utils/count";
+import { ApiResponse, fetchData } from "@/app/utils/count";
 import { IncidentMessagesData } from "./incidentMessages.types";
 
 interface CacheProps {
@@ -11,15 +11,21 @@ export async function IncidentMessagesChart({ dateRange }: CacheProps) {
     to: dateRange.to ?? new Date(),
   };
 
-  const incidentData: IncidentMessagesData[] = await fetchData(
-    `${process.env.BACKEND_URL}/api/incidentMessages`,
-    validDateRange
-  );
+  const response: ApiResponse<IncidentMessagesData[]> = await fetchData<
+    IncidentMessagesData[]
+  >(`${process.env.BACKEND_URL}/api/incidentMessages`, validDateRange);
+  if (!response.success) {
+    return <div>{`${response.error} - ${response.status}`}</div>;
+  }
+  if (!response.data || response.data.length === 0) {
+    return <div>No data available</div>;
+  }
+
   return (
     <div>
       <h1>Incident Messages Chart</h1>
       <ul>
-        {incidentData.map((incident, index) => (
+        {response.data.map((incident, index) => (
           <li key={index}>
             {incident.cache} incident messages from: {incident.fromDate} to:{" "}
             {incident.toDate}

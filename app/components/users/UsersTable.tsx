@@ -1,4 +1,4 @@
-import { fetchData } from "@/app/utils/count";
+import { ApiResponse, fetchData } from "@/app/utils/count";
 import { UserData } from "./users.types";
 
 interface UsersProps {
@@ -11,15 +11,21 @@ export default async function UsersTable({ dateRange }: UsersProps) {
     to: dateRange.to ?? new Date(),
   };
 
-  const userData: UserData[] = await fetchData(
+  const response: ApiResponse<UserData[]> = await fetchData<UserData[]>(
     `${process.env.BACKEND_URL}/api/users`,
     validDateRange
   );
+  if (!response.success) {
+    return <div>{`${response.error} - ${response.status}`}</div>;
+  }
+  if (!response.data || response.data.length === 0) {
+    return <div>No data available</div>;
+  }
 
   return (
     <div>
       <h1>Users Table</h1>
-      {userData.map((user, index) => (
+      {response.data.map((user, index) => (
         <ul key={index}>
           <div>
             <strong>Users:</strong> {user.users}

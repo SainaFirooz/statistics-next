@@ -1,4 +1,4 @@
-import { fetchData } from "@/app/utils/count";
+import { ApiResponse, fetchData } from "@/app/utils/count";
 import { WeeklyData } from "./weeklyData.types";
 
 interface WeeklyDateProps {
@@ -11,15 +11,21 @@ export async function WeeklyDataChart({ dateRange }: WeeklyDateProps) {
     to: dateRange.to ?? new Date(),
   };
 
-  const weeklyData: WeeklyData[] = await fetchData(
+  const response: ApiResponse<WeeklyData[]> = await fetchData<WeeklyData[]>(
     `${process.env.BACKEND_URL}/api/weeklyData`,
     validDateRange
   );
+  if (!response.success) {
+    return <div>{`${response.error} - ${response.status}`}</div>;
+  }
+  if (!response.data || response.data.length === 0) {
+    return <div>No data available</div>;
+  }
 
   return (
     <div>
       <h1>Weekly Data Chart</h1>
-      {weeklyData.map((data, index) => (
+      {response.data.map((data, index) => (
         <li key={index}>
           <div>
             <strong>To Date:</strong> {data.toDate}

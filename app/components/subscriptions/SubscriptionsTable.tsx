@@ -1,4 +1,4 @@
-import { fetchData } from "@/app/utils/count";
+import { ApiResponse, fetchData } from "@/app/utils/count";
 import { SubscriptionData } from "./subscriptions.types";
 
 interface SubscriptionsProps {
@@ -11,15 +11,20 @@ export async function SubscriptionsTable({ dateRange }: SubscriptionsProps) {
     to: dateRange.to ?? new Date(),
   };
 
-  const subscriptionData: SubscriptionData[] = await fetchData(
-    `${process.env.BACKEND_URL}/api/subscriptions`,
-    validDateRange
-  );
+  const response: ApiResponse<SubscriptionData[]> = await fetchData<
+    SubscriptionData[]
+  >(`${process.env.BACKEND_URL}/api/subscriptions`, validDateRange);
+  if (!response.success) {
+    return <div>{`${response.error} - ${response.status}`}</div>;
+  }
+  if (!response.data || response.data.length === 0) {
+    return <div>No data available</div>;
+  }
 
   return (
     <div>
       <h1>Subscription Table</h1>
-      {subscriptionData.map((subscriptions, index) => (
+      {response.data.map((subscriptions, index) => (
         <ul key={index}>
           <div>
             <strong>Subscriptions:</strong> {subscriptions.subscriptions}
