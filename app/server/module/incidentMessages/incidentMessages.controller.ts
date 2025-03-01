@@ -17,7 +17,6 @@ async function GET(req: NextRequest) {
       from,
       to
     );
-    console.log(result);
     return NextResponse.json(result);
   } catch (error) {
     return handleError(error);
