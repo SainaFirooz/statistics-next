@@ -1,5 +1,8 @@
 import { ApiResponse, fetchData } from "@/app/utils/count";
 import { IncidentMessagesData } from "./incidentMessages.types";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { LineChartComponent } from "../LineComponent";
+import TrendingUp from "../trending/TrendingUp";
 
 interface CacheProps {
   dateRange: { from: Date | null; to: Date | null };
@@ -20,18 +23,36 @@ export async function IncidentMessagesChart({ dateRange }: CacheProps) {
   if (!response.data || response.data.length === 0) {
     return <div>No data available</div>;
   }
+  const sortedData = [...response.data].sort(
+    (a, b) => new Date(a.fromDate).getTime() - new Date(b.fromDate).getTime()
+  );
 
   return (
-    <div>
-      <h1>Incident Messages Chart</h1>
-      <ul>
-        {response.data.map((incident, index) => (
-          <li key={index}>
-            {incident.cache} incident messages from: {incident.fromDate} to:{" "}
-            {incident.toDate}
-          </li>
-        ))}
-      </ul>
+    <div className="grid grid-cols-1 gap-6">
+      <Card>
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardTitle className="text-sm font-bold">Vy API messages</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center gap-3">
+            <div className="text-h2 font-bold">{sortedData.length}</div>
+            {/* Add precentage component here */}
+            <TrendingUp />
+          </div>
+          <p className="text-xs text-muted-foreground">last 7 days</p>
+        </CardContent>
+
+        <div className="h-[60px]">
+          <LineChartComponent
+            data={sortedData}
+            dataKey={"cache"}
+            chartConfig={{
+              color: "#00000",
+              label: "Vy API messages",
+            }}
+          />
+        </div>
+      </Card>
     </div>
   );
 }
