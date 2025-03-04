@@ -16,8 +16,6 @@ export function LineChartComponent<T>({
   data,
   dataKey,
 }: LineChartProps<T>) {
-  console.log(data);
-
   return (
     <ResponsiveContainer width="100%" height="100%">
       <AreaChart
