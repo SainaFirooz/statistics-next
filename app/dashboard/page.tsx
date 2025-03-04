@@ -1,14 +1,9 @@
 import { Suspense } from "react";
-import UsersTable from "../components/users/UsersTable";
 import Loading from "./loading";
 import { UsersChart } from "../components/users/UsersChart";
-import { SubscriptionsTable } from "../components/subscriptions/SubscriptionsTable";
 import { SubscriptionsChart } from "../components/subscriptions/SubscriptionsChart";
-import { NotificationTable } from "../components/notifications/NotificationsTable";
 import { NotificationChart } from "../components/notifications/NotificationsChart";
-import { IncidentMessagesTable } from "../components/incidentMessages/IncidentMessagesTable";
 import { IncidentMessagesChart } from "../components/incidentMessages/IncidentMessageChart";
-import { WeeklyDataTable } from "../components/weeklyData/WeeklyDataTable";
 import { WeeklyDataChart } from "../components/weeklyData/WeeklyDataChart";
 
 export const dynamic = "force-dynamic";
