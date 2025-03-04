@@ -1,5 +1,6 @@
 import { ApiResponse, fetchData } from "@/app/utils/count";
 import { WeeklyData } from "./weeklyData.types";
+import { ChartClient } from "./ChartClient";
 
 interface WeeklyDateProps {
   dateRange: { from: Date | null; to: Date | null };
@@ -21,29 +22,13 @@ export async function WeeklyDataChart({ dateRange }: WeeklyDateProps) {
   if (!response.data || response.data.length === 0) {
     return <div>No data available</div>;
   }
+  const sortedData = response.data.sort(
+    (a, b) => new Date(a.toDate).getTime() - new Date(b.toDate).getTime()
+  );
 
   return (
     <div>
-      <h1>Weekly Data Chart</h1>
-      {response.data.map((data, index) => (
-        <li key={index}>
-          <div>
-            <strong>To Date:</strong> {data.toDate}
-          </div>
-          <div>
-            <strong>Users:</strong> {data.users}
-          </div>
-          <div>
-            <strong>Subscriptions:</strong> {data.subscriptions}
-          </div>
-          <div>
-            <strong>Vy Messages:</strong> {data.vyMessages}
-          </div>
-          <div>
-            <strong>Sent Notifications:</strong> {data.sentNotifications}
-          </div>
-        </li>
-      ))}
+      <ChartClient data={sortedData} />
     </div>
   );
 }
