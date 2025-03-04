@@ -14,6 +14,7 @@ export async function SubscriptionsTable({ dateRange }: SubscriptionsProps) {
   const response: ApiResponse<SubscriptionData[]> = await fetchData<
     SubscriptionData[]
   >(`${process.env.BACKEND_URL}/api/subscriptions`, validDateRange);
+
   if (!response.success) {
     return <div>{`${response.error} - ${response.status}`}</div>;
   }
