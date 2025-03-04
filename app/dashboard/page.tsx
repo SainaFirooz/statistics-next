@@ -20,46 +20,59 @@ export default async function DashboardPage() {
   };
 
   return (
-    <div>
-      <Suspense fallback={<Loading />}>
-        <WeeklyDataTable dateRange={dateRange} />
-      </Suspense>
-      <br></br>
-      <Suspense fallback={<Loading />}>
-        <WeeklyDataChart dateRange={dateRange} />
-      </Suspense>
-      <br></br>
-      <Suspense fallback={<Loading />}>
-        <UsersTable dateRange={dateRange} />
-      </Suspense>
-      <br></br>
-      <Suspense fallback={<Loading />}>
-        <UsersChart dateRange={dateRange} />
-      </Suspense>
-      <br></br>
-      <Suspense fallback={<Loading />}>
-        <SubscriptionsTable dateRange={dateRange} />
-      </Suspense>
-      <br></br>
-      <Suspense fallback={<Loading />}>
-        <SubscriptionsChart dateRange={dateRange} />
-      </Suspense>
-      <br></br>
-      <Suspense fallback={<Loading />}>
-        <NotificationTable dateRange={dateRange} />
-      </Suspense>
-      <br></br>
-      <Suspense fallback={<Loading />}>
-        <NotificationChart dateRange={dateRange} />
-      </Suspense>
-      <br></br>
-      <Suspense fallback={<Loading />}>
-        <IncidentMessagesTable dateRange={dateRange} />
-      </Suspense>
-      <br></br>
-      <Suspense fallback={<Loading />}>
-        <IncidentMessagesChart dateRange={dateRange} />
-      </Suspense>
+    <div className="grid grid-cols-12 gap-6 p-6">
+      <div className="col-span-12 grid grid-cols-12 gap-6">
+        <div className="col-span-3">
+          <Suspense fallback={<Loading />}>
+            <UsersChart dateRange={dateRange} />
+          </Suspense>
+        </div>
+        <div className="col-span-3">
+          <Suspense fallback={<Loading />}>
+            <SubscriptionsChart dateRange={dateRange} />
+          </Suspense>
+        </div>
+        <div className="col-span-3">
+          <Suspense fallback={<Loading />}>
+            <NotificationChart dateRange={dateRange} />
+          </Suspense>
+        </div>
+        <div className="col-span-3">
+          <Suspense fallback={<Loading />}>
+            <IncidentMessagesChart dateRange={dateRange} />
+          </Suspense>
+        </div>
+      </div>
+      <div className="col-span-12">
+        <Suspense fallback={<Loading />}>
+          <WeeklyDataChart dateRange={dateRange} />
+        </Suspense>
+      </div>
+      {/* <div className="col-span-12">
+        <Suspense fallback={<Loading />}>
+          <WeeklyDataTable dateRange={dateRange} />
+        </Suspense>
+      </div>
+      <div className="col-span-8">
+        <Suspense fallback={<Loading />}>
+          <NotificationTable dateRange={dateRange} />
+        </Suspense>
+      </div>
+      <div className="col-span-4">
+        <Suspense fallback={<Loading />}>
+          <IncidentMessagesTable dateRange={dateRange} />
+        </Suspense>
+      </div>
+      <div className="col-span-6">
+        <Suspense fallback={<Loading />}>
+          <UsersTable dateRange={dateRange} />
+        </Suspense>
+      </div>
+      <div className="col-span-6">
+        <Suspense fallback={<Loading />}>
+          <SubscriptionsTable dateRange={dateRange} />
+        </Suspense>
+      </div> */}
     </div>
   );
 }
