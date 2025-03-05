@@ -12,7 +12,7 @@ export default {
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        primary: {
+        yellow: {
           "50": "#FFF4DE",
           "100": "#FED47C",
           "200": "#FFBF39",
@@ -23,7 +23,8 @@ export default {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
-        secondary: {
+        blue: {
+          "10": "#EBF2FA",
           "50": "#CCE4FD",
           "100": "#9BC9F9",
           "200": "#56A1F7",
@@ -38,20 +39,21 @@ export default {
           "1": "#FFFFFF",
           "100": "#000000",
         },
-        neutral: {
-          "50": "#F6F5F3",
-          "100": "#ECEAE5",
-          "200": "#D7D4CB",
-          "500": "#AFA795",
-          "600": "#585243",
-          "800": "#3B362C",
-          "900": "#1D1B16",
+        grey: {
+          "10": "#F9FAFB",
+          "50": "#F3F5F6",
+          "100": "#E5E8EC",
+          "200": "#CBD1D7",
+          "500": "#97A0AA",
+          "600": "#434D58",
+          "800": "#2C333B",
+          "900": "#16191D",
         },
         icon: {
-          "50": "#D9FCD6",
+          "50": "#E1F8E6",
           "100": "#047420",
           "200": "#680305",
-          "300": "#F9AEAF",
+          "300": "#F6E3E3",
         },
         card: {
           DEFAULT: "hsl(var(--card))",
