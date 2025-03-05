@@ -8,6 +8,8 @@ interface LineChartProps<T> {
   chartConfig: {
     color: string;
     label: string;
+    strokeColor: string;
+    fillColor: string;
   };
 }
 
@@ -52,8 +54,9 @@ export function LineChartComponent<T>({
         <Area
           type="monotone"
           dataKey={dataKey}
-          stroke="#000000"
-          fill="#FFFFF"
+          stroke={chartConfig.strokeColor}
+          strokeWidth={1.9}
+          fill={chartConfig.fillColor}
           fillOpacity={0.1}
         />
       </AreaChart>
