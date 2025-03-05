@@ -23,15 +23,15 @@ interface ChartClientProps<T> {
 const chartConfig = {
   users: {
     label: "Users",
-    color: "hsl(var(--chart-1))",
+    color: "#E78B33",
   },
   subscriptions: {
     label: "Subscriptions",
-    color: "hsl(var(--chart-2))",
+    color: "#4A806A",
   },
   vyMessages: {
     label: "Vy API Messages",
-    color: "hsl(var(--chart-3))",
+    color: "#08265D",
   },
   sentNotifications: {
     label: "Sent Notifications",
@@ -104,13 +104,12 @@ export function ChartClient<T>({ data }: ChartClientProps<T>) {
             /> */}
           </LineChart>
         </ChartContainer>
-        <div className="flex flex-col ml-4 space-y-2">
+        <div className="flex flex-col ml-4 space-y-13">
           <p className="text-sm font-medium">Users</p>
-          <h3>1234</h3>
+
           <p className="text-sm font-medium">Vy API Messages</p>
-          <p>12312</p>
+
           <p className="text-sm font-medium">Subscriptions</p>
-          <p>123123</p>
         </div>
       </CardContent>
     </Card>
