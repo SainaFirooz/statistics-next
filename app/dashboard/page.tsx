@@ -5,6 +5,9 @@ import { SubscriptionsChart } from "../components/subscriptions/SubscriptionsCha
 import { NotificationChart } from "../components/notifications/NotificationsChart";
 import { IncidentMessagesChart } from "../components/incidentMessages/IncidentMessageChart";
 import { WeeklyDataChart } from "../components/weeklyData/WeeklyDataChart";
+import { WeeklyDataTable } from "../components/weeklyData/WeeklyDataTable";
+import { NotificationTable } from "../components/notifications/NotificationsTable";
+import { IncidentMessagesTable } from "../components/incidentMessages/IncidentMessagesTable";
 
 export const dynamic = "force-dynamic";
 
@@ -24,6 +27,11 @@ export default async function DashboardPage() {
         </div>
         <div className="col-span-3">
           <Suspense fallback={<Loading />}>
+            <IncidentMessagesChart dateRange={dateRange} />
+          </Suspense>
+        </div>
+        <div className="col-span-3">
+          <Suspense fallback={<Loading />}>
             <SubscriptionsChart dateRange={dateRange} />
           </Suspense>
         </div>
@@ -32,33 +40,30 @@ export default async function DashboardPage() {
             <NotificationChart dateRange={dateRange} />
           </Suspense>
         </div>
-        <div className="col-span-3">
-          <Suspense fallback={<Loading />}>
-            <IncidentMessagesChart dateRange={dateRange} />
-          </Suspense>
-        </div>
       </div>
       <div className="col-span-12">
         <Suspense fallback={<Loading />}>
           <WeeklyDataChart dateRange={dateRange} />
         </Suspense>
       </div>
-      {/* <div className="col-span-12">
+      <div className="col-span-6">
         <Suspense fallback={<Loading />}>
           <WeeklyDataTable dateRange={dateRange} />
         </Suspense>
       </div>
-      <div className="col-span-8">
-        <Suspense fallback={<Loading />}>
-          <NotificationTable dateRange={dateRange} />
-        </Suspense>
+      <div className="col-span-6 grid grid-rows-2 gap-4">
+        <div className="row-span-1">
+          <Suspense fallback={<Loading />}>
+            <NotificationTable dateRange={dateRange} />
+          </Suspense>
+        </div>
+        <div className="row-span-1">
+          <Suspense fallback={<Loading />}>
+            <IncidentMessagesTable dateRange={dateRange} />
+          </Suspense>
+        </div>
       </div>
-      <div className="col-span-4">
-        <Suspense fallback={<Loading />}>
-          <IncidentMessagesTable dateRange={dateRange} />
-        </Suspense>
-      </div>
-      <div className="col-span-6">
+      {/* <div className="col-span-6">
         <Suspense fallback={<Loading />}>
           <UsersTable dateRange={dateRange} />
         </Suspense>
