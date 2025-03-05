@@ -47,6 +47,8 @@ export async function SubscriptionsChart({ dateRange }: SubscriptionsProps) {
             chartConfig={{
               color: "#00000",
               label: "Subscriptions",
+              strokeColor: "#4A806A",
+              fillColor: "#4A806A",
             }}
           />
         </div>

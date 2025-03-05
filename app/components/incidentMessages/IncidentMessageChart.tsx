@@ -49,6 +49,8 @@ export async function IncidentMessagesChart({ dateRange }: CacheProps) {
             chartConfig={{
               color: "#00000",
               label: "Vy API messages",
+              strokeColor: "#183467",
+              fillColor: "#1150C3",
             }}
           />
         </div>

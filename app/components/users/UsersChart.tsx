@@ -51,6 +51,8 @@ export async function UsersChart({ dateRange }: UsersProps) {
             chartConfig={{
               color: "#00000",
               label: "Users",
+              strokeColor: "#E78B33",
+              fillColor: "#E78B33",
             }}
           />
         </div>

@@ -45,6 +45,8 @@ export async function NotificationChart({ dateRange }: NotificationProps) {
             chartConfig={{
               color: "#00000",
               label: "Notifications",
+              strokeColor: "#F6A600",
+              fillColor: "#F6A600",
             }}
           />
         </div>
