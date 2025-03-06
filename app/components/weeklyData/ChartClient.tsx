@@ -1,6 +1,6 @@
 "use client";
 
-import { CartesianGrid, Line, LineChart, XAxis } from "recharts";
+import { CartesianGrid, LabelList, Line, LineChart, XAxis } from "recharts";
 import {
   Card,
   CardContent,
@@ -16,10 +16,12 @@ import {
 } from "@/components/ui/chart";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
+import { WeeklyData } from "./weeklyData.types";
 
-interface ChartClientProps<T> {
-  data: T[];
+interface ChartClientProps {
+  data: WeeklyData[];
 }
+
 const chartConfig = {
   users: {
     label: "Users",
@@ -37,29 +39,75 @@ const chartConfig = {
     label: "Sent Notifications",
     color: "hsl(var(--chart-4))",
   },
-  toDate: {
-    label: "To Date",
-    color: "hsl(var(--chart-5))",
-  },
 } satisfies ChartConfig;
 
-export function ChartClient<T>({ data }: ChartClientProps<T>) {
+interface CustomLabelProps {
+  x?: string | number;
+  y?: string | number;
+  value?: string | number;
+  index?: number;
+}
+
+export function ChartClient({ data }: ChartClientProps) {
+  const renderCustomizedLabel = (dataKey: keyof typeof chartConfig) => {
+    function CustomLabel({ x, y, value, index }: CustomLabelProps) {
+      if (
+        index === data.length - 1 &&
+        typeof x === "number" &&
+        typeof y === "number" &&
+        typeof value === "number"
+      ) {
+        const label = chartConfig[dataKey].label;
+
+        return (
+          <>
+            <text
+              x={x}
+              y={y - 26}
+              fill="#FFFFF"
+              fontSize={12}
+              textAnchor="middle"
+              dominantBaseline="middle"
+            >
+              {label}
+            </text>
+            <text
+              x={x}
+              y={y - 12}
+              fill="#FFFFF"
+              fontSize={14}
+              textAnchor="middle"
+              dominantBaseline="middle"
+            >
+              {value}
+            </text>
+          </>
+        );
+      }
+      return null;
+    }
+    return CustomLabel;
+  };
+
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Overview</CardTitle>
+        <CardTitle>Total</CardTitle>
         <CardDescription></CardDescription>
       </CardHeader>
       <CardContent className="flex justify-between">
         <ChartContainer
           config={chartConfig}
-          className="flex-grow h-[500px] w-[80%]"
+          className="flex-grow h-[450px] w-[85%]"
         >
           <LineChart
+            accessibilityLayer
             data={data}
             margin={{
               left: 12,
-              right: 12,
+              right: 50,
+              top: 25,
+              bottom: 5,
             }}
           >
             <CartesianGrid vertical={false} />
@@ -74,43 +122,79 @@ export function ChartClient<T>({ data }: ChartClientProps<T>) {
               cursor={true}
               content={<ChartTooltipContent className={cn("w-[200px]")} />}
             />
+
             <Line
               dataKey="users"
-              type="linear"
+              type="monotone"
               stroke={chartConfig.users.color}
               strokeWidth={4}
-              dot={false}
-            />
+              dot={{
+                fill: "#E78B33",
+              }}
+              activeDot={{
+                r: 6,
+              }}
+            >
+              <LabelList
+                position="top"
+                offset={12}
+                className="fill-foreground"
+                fontSize={12}
+                dataKey="users"
+                content={renderCustomizedLabel("users")}
+              />
+            </Line>
+
             <Line
               dataKey="vyMessages"
-              type="linear"
+              type="monotone"
               stroke={chartConfig.vyMessages.color}
               strokeWidth={4}
-              dot={false}
-            />
+              dot={{
+                fill: "#08265D",
+              }}
+              activeDot={{
+                r: 6,
+              }}
+            >
+              <LabelList
+                position="top"
+                offset={12}
+                className="fill-foreground"
+                fontSize={12}
+                dataKey="vyMessages"
+                content={renderCustomizedLabel("vyMessages")}
+              />
+            </Line>
+
             <Line
               dataKey="subscriptions"
-              type="linear"
+              type="monotone"
               stroke={chartConfig.subscriptions.color}
               strokeWidth={4}
-              dot={false}
-            />
-            {/* <Line
-              dataKey="sentNotifications"
-              type="linear"
-              stroke={chartConfig.sentNotifications.color}
-              strokeWidth={4}
-              dot={false}
-            /> */}
+              dot={{
+                fill: "#4A806A",
+              }}
+              activeDot={{
+                r: 6,
+              }}
+            >
+              <LabelList
+                position="top"
+                offset={12}
+                className="fill-foreground"
+                fontSize={12}
+                dataKey="subscriptions"
+                content={renderCustomizedLabel("subscriptions")}
+              />
+            </Line>
           </LineChart>
         </ChartContainer>
-        <div className="flex flex-col ml-4 space-y-13">
-          <p className="text-sm font-medium">Users</p>
-
-          <p className="text-sm font-medium">Vy API Messages</p>
-
+        {/* <div className="flex flex-col ml-4 mt-5">
+          <p className="text-sm font-medium mb-13">Users</p>
+          <p className="text-sm font-medium mb-12">Vy API Messages</p>
           <p className="text-sm font-medium">Subscriptions</p>
-        </div>
+        </div> */}
       </CardContent>
     </Card>
   );
