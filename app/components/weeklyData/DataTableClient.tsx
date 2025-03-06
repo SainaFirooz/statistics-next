@@ -92,9 +92,7 @@ export function DataTableClient({ initialData }: DataTableClientProps) {
                   if (currentPage > 1) handlePageChange(currentPage - 1);
                 }}
                 className={
-                  currentPage === 1
-                    ? "pointer-events-none opacity-50 hidden"
-                    : ""
+                  currentPage === 1 ? "pointer-events-none opacity-50" : ""
                 }
               />
             </PaginationItem>
@@ -125,7 +123,7 @@ export function DataTableClient({ initialData }: DataTableClientProps) {
                 }}
                 className={
                   currentPage === totalPages
-                    ? "pointer-events-none opacity-50 hidden"
+                    ? "pointer-events-none opacity-50"
                     : ""
                 }
               />
