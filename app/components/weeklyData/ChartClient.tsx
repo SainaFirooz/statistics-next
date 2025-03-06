@@ -63,21 +63,21 @@ export function ChartClient({ data }: ChartClientProps) {
           <>
             <text
               x={x}
-              y={y - 26}
+              y={y - 38}
               fill="#FFFFF"
-              fontSize={12}
               textAnchor="middle"
               dominantBaseline="middle"
+              className="font-medium text-sm"
             >
-              {label}
+              {label}:
             </text>
             <text
               x={x}
-              y={y - 12}
+              y={y - 18}
               fill="#FFFFF"
-              fontSize={14}
               textAnchor="middle"
               dominantBaseline="middle"
+              className="font-bold text-sm"
             >
               {value}
             </text>
@@ -105,7 +105,7 @@ export function ChartClient({ data }: ChartClientProps) {
             data={data}
             margin={{
               left: 12,
-              right: 50,
+              right: 69,
               top: 25,
               bottom: 5,
             }}
