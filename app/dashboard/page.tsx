@@ -8,6 +8,8 @@ import { WeeklyDataChart } from "../components/weeklyData/WeeklyDataChart";
 import { WeeklyDataTable } from "../components/weeklyData/WeeklyDataTable";
 import { NotificationTable } from "../components/notifications/NotificationsTable";
 import { IncidentMessagesTable } from "../components/incidentMessages/IncidentMessagesTable";
+import { DatePicker } from "../components/DatePicker";
+import { DateFilter } from "../components/DateFilter";
 
 export const dynamic = "force-dynamic";
 
@@ -19,6 +21,12 @@ export default async function DashboardPage() {
 
   return (
     <div className="grid grid-cols-12 gap-6 p-6">
+      <div className="col-span-12 flex items-center justify-between gap-4">
+        <DatePicker />
+        <div className="ml-auto">
+          <DateFilter />
+        </div>
+      </div>
       <div className="col-span-12 grid grid-cols-12 gap-6">
         <div className="col-span-3">
           <Suspense fallback={<Loading />}>
