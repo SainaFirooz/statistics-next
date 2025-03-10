@@ -1,7 +1,6 @@
 "use client";
-
 import React, { useState } from "react";
-import { WeeklyData } from "./weeklyData.types";
+import { WeeklyData } from "../weeklyData/weeklyData.types";
 import {
   Table,
   TableBody,

@@ -1,7 +1,6 @@
 import { ApiResponse, fetchData } from "@/app/utils/count";
 import { NotificationsData } from "./notifications.types";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { LineChartComponent } from "../LineComponent";
+import { TopChartclient } from "../client/TopChartClient";
 
 interface NotificationProps {
   dateRange: { from: Date | null; to: Date | null };
@@ -26,31 +25,16 @@ export async function NotificationChart({ dateRange }: NotificationProps) {
   );
 
   return (
-    <div>
-      <Card>
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-bold">
-            Sent notifications
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="text-h2 font-bold">{sortedData.length}</div>
-          <p className="text-xs text-muted-foreground">last 7 days</p>
-        </CardContent>
-        <div className="h-[60px]">
-          {" "}
-          <LineChartComponent
-            data={sortedData}
-            dataKey={"queueUserIds"}
-            chartConfig={{
-              color: "#00000",
-              label: "Notifications",
-              strokeColor: "#F6A600",
-              fillColor: "#F6A600",
-            }}
-          />
-        </div>
-      </Card>
-    </div>
+    <TopChartclient
+      data={sortedData}
+      title={"Sent Notifications"}
+      chartConfig={{
+        color: "#434D58",
+        label: "Sent Notifications",
+        strokeColor: "#434D58",
+        fillColor: "#434D58",
+        dataKey: "queueUserIds",
+      }}
+    />
   );
 }

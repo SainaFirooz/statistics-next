@@ -1,6 +1,6 @@
 import { ApiResponse, fetchData } from "@/app/utils/count";
 import { WeeklyData } from "./weeklyData.types";
-import { DataTableClient } from "./DataTableClient";
+import { DataTableClient } from "../client/DataTableClient";
 
 interface DataTableProps {
   dateRange: { from: Date | null; to: Date | null };

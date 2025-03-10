@@ -1,6 +1,6 @@
 import { ApiResponse, fetchData } from "@/app/utils/count";
 import { WeeklyData } from "./weeklyData.types";
-import { ChartClient } from "./ChartClient";
+import { TotalChartClient } from "../client/TotalChartClient";
 
 interface WeeklyDateProps {
   dateRange: { from: Date | null; to: Date | null };
@@ -28,7 +28,7 @@ export async function WeeklyDataChart({ dateRange }: WeeklyDateProps) {
 
   return (
     <div>
-      <ChartClient data={sortedData} />
+      <TotalChartClient data={sortedData} />
     </div>
   );
 }

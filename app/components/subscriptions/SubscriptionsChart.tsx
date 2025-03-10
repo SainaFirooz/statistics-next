@@ -1,8 +1,6 @@
 import { ApiResponse, fetchData } from "@/app/utils/count";
 import { SubscriptionData } from "./subscriptions.types";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { LineChartComponent } from "../LineComponent";
-import TrendingDown from "../trending/TrendingDown";
+import { TopChartclient } from "../client/TopChartClient";
 
 interface SubscriptionsProps {
   dateRange: { from: Date | null; to: Date | null };
@@ -28,31 +26,16 @@ export async function SubscriptionsChart({ dateRange }: SubscriptionsProps) {
   );
 
   return (
-    <div className="grid grid-cols-1 gap-6">
-      <Card>
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-bold">Subscriptions</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="flex items-center gap-3">
-            <div className="text-h2 font-bold">{sortedData.length}</div>
-            <TrendingDown />
-          </div>
-          <p className="text-xs text-muted-foreground">last 7 days</p>
-        </CardContent>
-        <div className="h-[60px]">
-          <LineChartComponent
-            data={sortedData}
-            dataKey={"subscriptions"}
-            chartConfig={{
-              color: "#00000",
-              label: "Subscriptions",
-              strokeColor: "#4A806A",
-              fillColor: "#4A806A",
-            }}
-          />
-        </div>
-      </Card>
-    </div>
+    <TopChartclient
+      data={sortedData}
+      title={"Subscriptions"}
+      chartConfig={{
+        color: "#4A806A",
+        label: "Subscriptions",
+        strokeColor: "#4A806A",
+        fillColor: "#4A806A",
+        dataKey: "subscriptions",
+      }}
+    />
   );
 }

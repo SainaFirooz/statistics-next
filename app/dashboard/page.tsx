@@ -7,7 +7,6 @@ import { IncidentMessagesChart } from "../components/incidentMessages/IncidentMe
 import { WeeklyDataChart } from "../components/weeklyData/WeeklyDataChart";
 import { WeeklyDataTable } from "../components/weeklyData/WeeklyDataTable";
 import { NotificationTable } from "../components/notifications/NotificationsTable";
-import { IncidentMessagesTable } from "../components/incidentMessages/IncidentMessagesTable";
 import { DatePicker } from "../components/DatePicker";
 import { DateFilter } from "../components/DateFilter";
 
@@ -65,20 +64,10 @@ export default async function DashboardPage() {
             <NotificationTable dateRange={dateRange} />
           </Suspense>
         </div>
-        <div className="row-span-1">
-          <Suspense fallback={<Loading />}>
-            <IncidentMessagesTable dateRange={dateRange} />
-          </Suspense>
-        </div>
       </div>
       {/* <div className="col-span-6">
         <Suspense fallback={<Loading />}>
           <UsersTable dateRange={dateRange} />
-        </Suspense>
-      </div>
-      <div className="col-span-6">
-        <Suspense fallback={<Loading />}>
-          <SubscriptionsTable dateRange={dateRange} />
         </Suspense>
       </div> */}
     </div>

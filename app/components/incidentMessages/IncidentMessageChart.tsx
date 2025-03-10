@@ -1,8 +1,6 @@
 import { ApiResponse, fetchData } from "@/app/utils/count";
 import { IncidentMessagesData } from "./incidentMessages.types";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { LineChartComponent } from "../LineComponent";
-import TrendingUp from "../trending/TrendingUp";
+import { TopChartclient } from "../client/TopChartClient";
 
 interface CacheProps {
   dateRange: { from: Date | null; to: Date | null };
@@ -28,33 +26,16 @@ export async function IncidentMessagesChart({ dateRange }: CacheProps) {
   );
 
   return (
-    <div className="grid grid-cols-1 gap-6">
-      <Card>
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-bold">Vy API messages</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="flex items-center gap-3">
-            <div className="text-h2 font-bold">{sortedData.length}</div>
-            {/* Add precentage component here */}
-            <TrendingUp />
-          </div>
-          <p className="text-xs text-muted-foreground">last 7 days</p>
-        </CardContent>
-
-        <div className="h-[60px]">
-          <LineChartComponent
-            data={sortedData}
-            dataKey={"cache"}
-            chartConfig={{
-              color: "#00000",
-              label: "Vy API messages",
-              strokeColor: "#183467",
-              fillColor: "#1150C3",
-            }}
-          />
-        </div>
-      </Card>
-    </div>
+    <TopChartclient
+      data={sortedData}
+      title={"VY API messages"}
+      chartConfig={{
+        color: "#08265D",
+        label: "Vy API messages",
+        strokeColor: "#08265D",
+        fillColor: "#08265D",
+        dataKey: "cache",
+      }}
+    />
   );
 }

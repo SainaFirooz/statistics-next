@@ -1,8 +1,6 @@
 import { ApiResponse, fetchData } from "@/app/utils/count";
 import { UserData } from "./users.types";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { LineChartComponent } from "../LineComponent";
-import TrendingUp from "../trending/TrendingUp";
+import { TopChartclient } from "../client/TopChartClient";
 
 interface UsersProps {
   dateRange: { from: Date | null; to: Date | null };
@@ -32,31 +30,16 @@ export async function UsersChart({ dateRange }: UsersProps) {
   );
 
   return (
-    <div className="grid grid-cols-1 gap-6">
-      <Card>
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-bold">Users</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="flex items-center gap-3">
-            <div className="text-h2 font-bold">{sortedData.length}</div>
-            <TrendingUp />
-          </div>
-          <p className="text-xs text-muted-foreground">last 7 days</p>
-        </CardContent>
-        <div className="h-[60px]">
-          <LineChartComponent
-            data={sortedData}
-            dataKey={"users"}
-            chartConfig={{
-              color: "#00000",
-              label: "Users",
-              strokeColor: "#E78B33",
-              fillColor: "#E78B33",
-            }}
-          />
-        </div>
-      </Card>
-    </div>
+    <TopChartclient
+      data={sortedData}
+      title={"Users"}
+      chartConfig={{
+        color: "#E78B33",
+        label: "Users",
+        strokeColor: "#E78B33",
+        fillColor: "#E78B33",
+        dataKey: "users",
+      }}
+    />
   );
 }

@@ -1,5 +1,4 @@
 "use client";
-
 import { CartesianGrid, LabelList, Line, LineChart, XAxis } from "recharts";
 import {
   Card,
@@ -16,7 +15,7 @@ import {
 } from "@/components/ui/chart";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
-import { WeeklyData } from "./weeklyData.types";
+import { WeeklyData } from "../weeklyData/weeklyData.types";
 
 interface ChartClientProps {
   data: WeeklyData[];
@@ -48,7 +47,7 @@ interface CustomLabelProps {
   index?: number;
 }
 
-export function ChartClient({ data }: ChartClientProps) {
+export function TotalChartClient({ data }: ChartClientProps) {
   const renderCustomizedLabel = (dataKey: keyof typeof chartConfig) => {
     function CustomLabel({ x, y, value, index }: CustomLabelProps) {
       if (
