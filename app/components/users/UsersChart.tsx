@@ -34,10 +34,10 @@ export async function UsersChart({ dateRange }: UsersProps) {
       data={sortedData}
       title={"Users"}
       chartConfig={{
-        color: "#E78B33",
+        color: "#F6A600",
         label: "Users",
-        strokeColor: "#E78B33",
-        fillColor: "#E78B33",
+        strokeColor: "#F6A600",
+        fillColor: "#F6A600",
         dataKey: "users",
       }}
     />

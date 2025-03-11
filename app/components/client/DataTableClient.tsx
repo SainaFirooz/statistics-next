@@ -48,23 +48,27 @@ export function DataTableClient({ initialData }: DataTableClientProps) {
   };
 
   return (
-    <Card>
+    <Card className="bg-white dark:bg-grey-800  border dark:border-grey-500">
       <CardHeader>
-        <CardTitle>Data Table</CardTitle>
+        <CardTitle className="font-bold">Data Table</CardTitle>
         <Table>
           <TableHeader>
             <TableRow>
-              <TableHead className="font-bold text-shades-100">Date</TableHead>
-              <TableHead className="font-bold text-shades-100">
+              <TableHead className="font-bold text-shades-100 dark:text-grey-100">
+                Date
+              </TableHead>
+              <TableHead className="font-bold text-shades-100 dark:text-grey-100">
                 Vy API Messages
               </TableHead>
-              <TableHead className="font-bold text-shades-100">
+              <TableHead className="font-bold text-shades-100 dark:text-grey-100">
                 Sent Notifications
               </TableHead>
-              <TableHead className="font-bold text-shades-100">
+              <TableHead className="font-bold text-shades-100 dark:text-grey-100">
                 Subscriptions
               </TableHead>
-              <TableHead className="font-bold text-shades-100">Users</TableHead>
+              <TableHead className="font-bold text-shades-100 dark:text-grey-100">
+                Users
+              </TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -84,7 +88,7 @@ export function DataTableClient({ initialData }: DataTableClientProps) {
 
         <Pagination>
           <PaginationContent>
-            <PaginationItem className="text-blue-700">
+            <PaginationItem className="text-grey-900 dark:text-grey-10">
               <PaginationPrevious
                 onClick={(e) => {
                   e.preventDefault();
@@ -99,7 +103,7 @@ export function DataTableClient({ initialData }: DataTableClientProps) {
             {getPageNumbers().map((number) => (
               <PaginationItem
                 key={number}
-                className="text-blue-700 border border-transparent hover:border-blue-700 rounded-lg"
+                className="text-grey-900 dark:text-grey-10 border border-transparent hover:border-grey-900  dark:hover:border-grey-10 rounded-lg"
               >
                 <PaginationLink
                   onClick={(e) => {
@@ -113,7 +117,7 @@ export function DataTableClient({ initialData }: DataTableClientProps) {
               </PaginationItem>
             ))}
 
-            <PaginationItem className="text-blue-700">
+            <PaginationItem className="text-grey-900 dark:text-grey-10">
               <PaginationNext
                 onClick={(e) => {
                   e.preventDefault();

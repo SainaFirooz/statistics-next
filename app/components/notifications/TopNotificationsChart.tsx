@@ -1,20 +1,19 @@
 import { ApiResponse, fetchData } from "@/app/utils/count";
-import { IncidentMessagesData } from "./incidentMessages.types";
+import { NotificationsData } from "./notifications.types";
 import { TopChartclient } from "../client/TopChartClient";
 
-interface CacheProps {
+interface NotificationProps {
   dateRange: { from: Date | null; to: Date | null };
 }
 
-export async function IncidentMessagesChart({ dateRange }: CacheProps) {
+export async function NotificationChart({ dateRange }: NotificationProps) {
   const validDateRange = {
     from: dateRange.from ?? new Date(),
     to: dateRange.to ?? new Date(),
   };
-
-  const response: ApiResponse<IncidentMessagesData[]> = await fetchData<
-    IncidentMessagesData[]
-  >(`${process.env.BACKEND_URL}/api/incidentMessages`, validDateRange);
+  const response: ApiResponse<NotificationsData[]> = await fetchData<
+    NotificationsData[]
+  >(`${process.env.BACKEND_URL}/api/notifications`, validDateRange);
   if (!response.success) {
     return <div>{`${response.error} - ${response.status}`}</div>;
   }
@@ -28,13 +27,13 @@ export async function IncidentMessagesChart({ dateRange }: CacheProps) {
   return (
     <TopChartclient
       data={sortedData}
-      title={"VY API messages"}
+      title={"Sent Notifications"}
       chartConfig={{
-        color: "#015AAA",
-        label: "Vy API messages",
-        strokeColor: "#015AAA",
-        fillColor: "#015AAA",
-        dataKey: "cache",
+        color: "#3079DB",
+        label: "Sent Notifications",
+        strokeColor: "#3079DB",
+        fillColor: "#3079DB",
+        dataKey: "queueUserIds",
       }}
     />
   );

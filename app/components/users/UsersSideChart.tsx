@@ -1,11 +1,12 @@
 import { ApiResponse, fetchData } from "@/app/utils/count";
 import { UserData } from "./users.types";
+import { UsersSideChartClient } from "../client/UsersSideClient";
 
 interface UsersProps {
   dateRange: { from: Date | null; to: Date | null };
 }
 
-export default async function UsersTable({ dateRange }: UsersProps) {
+export default async function UsersSideChart({ dateRange }: UsersProps) {
   const validDateRange = {
     from: dateRange.from ?? new Date(),
     to: dateRange.to ?? new Date(),
@@ -22,22 +23,9 @@ export default async function UsersTable({ dateRange }: UsersProps) {
     return <div>No data available</div>;
   }
 
-  return (
-    <div>
-      <h1>Users Table</h1>
-      {response.data.map((user, index) => (
-        <ul key={index}>
-          <div>
-            <strong>Users:</strong> {user.users}
-          </div>
-          <div>
-            <strong>From Date:</strong> {user.fromDate}
-          </div>
-          <div>
-            <strong>To Date:</strong> {user.toDate}
-          </div>
-        </ul>
-      ))}
-    </div>
+  const sortedData = [...response.data].sort(
+    (a, b) => new Date(a.fromDate).getTime() - new Date(b.fromDate).getTime()
   );
+
+  return <UsersSideChartClient data={sortedData} />;
 }

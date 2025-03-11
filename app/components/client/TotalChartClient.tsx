@@ -24,7 +24,7 @@ interface ChartClientProps {
 const chartConfig = {
   users: {
     label: "Users",
-    color: "#E78B33",
+    color: "#F6A600",
   },
   subscriptions: {
     label: "Subscriptions",
@@ -32,7 +32,7 @@ const chartConfig = {
   },
   vyMessages: {
     label: "Vy API Messages",
-    color: "#08265D",
+    color: "#015AAA",
   },
   sentNotifications: {
     label: "Sent Notifications",
@@ -63,10 +63,9 @@ export function TotalChartClient({ data }: ChartClientProps) {
             <text
               x={x}
               y={y - 38}
-              fill="#FFFFF"
               textAnchor="middle"
               dominantBaseline="middle"
-              className="font-medium text-sm"
+              className="font-medium text-sm fill-black dark:fill-gray-100"
             >
               {label}:
             </text>
@@ -76,7 +75,7 @@ export function TotalChartClient({ data }: ChartClientProps) {
               fill="#FFFFF"
               textAnchor="middle"
               dominantBaseline="middle"
-              className="font-bold text-sm"
+              className="font-bold text-sm fill-black dark:fill-gray-100"
             >
               {value}
             </text>
@@ -89,15 +88,15 @@ export function TotalChartClient({ data }: ChartClientProps) {
   };
 
   return (
-    <Card>
+    <Card className="bg-white dark:bg-grey-800 border dark:border-grey-500">
       <CardHeader>
-        <CardTitle>Total</CardTitle>
+        <CardTitle className="font-bold">Total</CardTitle>
         <CardDescription></CardDescription>
       </CardHeader>
       <CardContent className="flex justify-between">
         <ChartContainer
           config={chartConfig}
-          className="flex-grow h-[450px] w-[85%]"
+          className="flex-grow h-[354px] w-[85%]"
         >
           <LineChart
             accessibilityLayer
@@ -112,7 +111,7 @@ export function TotalChartClient({ data }: ChartClientProps) {
             <CartesianGrid vertical={false} />
             <XAxis
               dataKey="toDate"
-              tickLine={true}
+              tickLine={false}
               axisLine={false}
               tickMargin={8}
               tickFormatter={(value) => format(new Date(value), "MMM dd")}
@@ -128,7 +127,7 @@ export function TotalChartClient({ data }: ChartClientProps) {
               stroke={chartConfig.users.color}
               strokeWidth={4}
               dot={{
-                fill: "#E78B33",
+                fill: "#F6A600",
               }}
               activeDot={{
                 r: 6,
@@ -150,7 +149,7 @@ export function TotalChartClient({ data }: ChartClientProps) {
               stroke={chartConfig.vyMessages.color}
               strokeWidth={4}
               dot={{
-                fill: "#08265D",
+                fill: "#015AAA",
               }}
               activeDot={{
                 r: 6,
@@ -189,11 +188,6 @@ export function TotalChartClient({ data }: ChartClientProps) {
             </Line>
           </LineChart>
         </ChartContainer>
-        {/* <div className="flex flex-col ml-4 mt-5">
-          <p className="text-sm font-medium mb-13">Users</p>
-          <p className="text-sm font-medium mb-12">Vy API Messages</p>
-          <p className="text-sm font-medium">Subscriptions</p>
-        </div> */}
       </CardContent>
     </Card>
   );

@@ -1,7 +1,7 @@
 "use client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import TrendingDown from "../trending/TrendingDown";
 import { LineChartComponent } from "./LineClient";
+import TrendingUp from "../trending/TrendingUp";
 
 interface CharClientProps<T> {
   data: T[];
@@ -22,15 +22,15 @@ export function TopChartclient<T>({
   chartConfig,
 }: CharClientProps<T>) {
   return (
-    <Card>
+    <Card className="bg-white dark:bg-grey-800  border dark:border-grey-500">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-sm font-bold">{title}</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="flex items-center gap-3">
           <div className="text-h2 font-bold">{data.length}</div>
-          {/* showtrending logic here later */}
-          <TrendingDown />
+          {/* <TrendingDown /> */}
+          <TrendingUp />
         </div>
         <p className="text-xs text-muted-foreground">last 7 days</p>
       </CardContent>
