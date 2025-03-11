@@ -35,11 +35,15 @@ export default {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
         },
+        green: {
+          "500": "#4A806A",
+        },
         shades: {
           "1": "#FFFFFF",
           "100": "#000000",
         },
         grey: {
+          "0": "#FFFFFF",
           "10": "#F9FAFB",
           "50": "#F3F5F6",
           "100": "#E5E8EC",
@@ -49,6 +53,21 @@ export default {
           "800": "#2C333B",
           "900": "#16191D",
         },
+        error: {
+          "50": "#931010",
+          "30": "#E51F1F",
+          "10": "#F1E6E6",
+        },
+        orange: {
+          "50": "#F58600",
+          "10": "#FEF3E5",
+        },
+        success: {
+          "70": "#055418",
+          "50": "#047420",
+          "20": "#E6F1E9",
+        },
+
         icon: {
           "50": "#E1F8E6",
           "100": "#047420",
