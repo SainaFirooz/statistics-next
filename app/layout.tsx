@@ -30,7 +30,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Header />
-          <main className="flex justify-center justify-items-center dark:bg-grey-900">
+          <main className="flex justify-center justify-items-center dark:bg-grey-900 mt-16">
             {children}
           </main>
         </ThemeProvider>

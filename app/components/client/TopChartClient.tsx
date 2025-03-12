@@ -22,7 +22,7 @@ export function TopChartclient<T>({
   chartConfig,
 }: CharClientProps<T>) {
   return (
-    <Card className="bg-white dark:bg-grey-800  border dark:border-grey-500">
+    <Card className="bg-white dark:bg-grey-800  border dark:border-grey-500 ">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-sm font-bold">{title}</CardTitle>
       </CardHeader>

@@ -19,7 +19,7 @@ export function DateFilter() {
         24 hours
       </Button>
       <Button
-        variant="ghost"
+        variant="default"
         onClick={() =>
           setDateRange({ from: new Date(), to: subDays(new Date(), 7) })
         }

@@ -20,7 +20,11 @@ export default async function DashboardPage() {
   };
 
   return (
-    <div className="bg-white dark:bg-grey-900 max-w-7xl max-h-svw p-6">
+    <div className="bg-white dark:bg-grey-900 max-w-7xl max-h-svw ">
+      <div className="flex justify-between mb-6">
+        <DatePicker />
+        <DateFilter />
+      </div>
       <div className="grid grid-cols-4 gap-6">
         <Suspense fallback={<Loading />}>
           <UsersChart dateRange={dateRange} />
