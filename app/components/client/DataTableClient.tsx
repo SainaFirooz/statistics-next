@@ -48,10 +48,10 @@ export function DataTableClient({ initialData }: DataTableClientProps) {
   };
 
   return (
-    <Card className="bg-white dark:bg-grey-800  border dark:border-grey-500">
+    <Card className="bg-white dark:bg-grey-800 border dark:border-grey-500 pb-6 gap-6">
       <CardHeader>
         <CardTitle className="font-bold">Data Table</CardTitle>
-        <Table>
+        <Table className="">
           <TableHeader>
             <TableRow>
               <TableHead className="font-bold text-shades-100 dark:text-grey-100">
@@ -86,7 +86,7 @@ export function DataTableClient({ initialData }: DataTableClientProps) {
           </TableBody>
         </Table>
 
-        <Pagination>
+        <Pagination className="pb-6 pt-6">
           <PaginationContent>
             <PaginationItem className="text-grey-900 dark:text-grey-10">
               <PaginationPrevious

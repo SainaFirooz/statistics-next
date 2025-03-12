@@ -2,7 +2,6 @@ import { ApiResponse, fetchData } from "@/app/utils/count";
 import { UserData } from "./users.types";
 import { UsersSideChartClient } from "../client/UsersSideClient";
 import { NotificationsData } from "../notifications/notifications.types";
-import { IncidentMessagesData } from "../incidentMessages/incidentMessages.types";
 
 interface UsersProps {
   dateRange: { from: Date | null; to: Date | null };
@@ -23,27 +22,17 @@ export default async function UsersSideChart({ dateRange }: UsersProps) {
     NotificationsData[]
   >(`${process.env.BACKEND_URL}/api/notifications`, validDateRange);
 
-  const cache: ApiResponse<IncidentMessagesData[]> = await fetchData<
-    IncidentMessagesData[]
-  >(`${process.env.BACKEND_URL}/api/incidentMessages`, validDateRange);
-
   if (!users.success) {
     return <div>{`${users.error} - ${users.status}`}</div>;
   }
   if (!notifications.success) {
     return <div>{`${notifications.error} - ${notifications.status}`}</div>;
   }
-  if (!cache.success) {
-    return <div>{`${cache.error} - ${cache.status}`}</div>;
-  }
 
   if (!users.data || users.data.length === 0) {
     return <div>No data available</div>;
   }
   if (!notifications.data || notifications.data.length === 0) {
-    return <div>No data available</div>;
-  }
-  if (!cache.data || cache.data.length === 0) {
     return <div>No data available</div>;
   }
 
@@ -55,7 +44,6 @@ export default async function UsersSideChart({ dateRange }: UsersProps) {
     <UsersSideChartClient
       users={users.data}
       notifications={notifications.data}
-      cache={cache.data}
     />
   );
 }

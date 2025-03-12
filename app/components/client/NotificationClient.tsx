@@ -38,7 +38,7 @@ interface NotificationClientProps {
 
 export function NotificationClient({ data }: NotificationClientProps) {
   return (
-    <Card className="bg-white dark:bg-grey-800 border dark:border-grey-500">
+    <Card className="bg-white dark:bg-grey-800 border dark:border-grey-500 mb-0">
       <CardHeader>
         <CardTitle className="font-bold">Sent Notifications</CardTitle>
         <CardDescription className="dark:text-grey-100 font-medium">
@@ -62,7 +62,7 @@ export function NotificationClient({ data }: NotificationClientProps) {
             />
             <YAxis tickLine={false} axisLine={false} tickMargin={15} />
             <XAxis
-              dataKey="fromDate"
+              dataKey="toDate"
               tickLine={false}
               axisLine={false}
               tickMargin={8}

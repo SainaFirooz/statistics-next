@@ -20,47 +20,33 @@ export default async function DashboardPage() {
   };
 
   return (
-    <div className="bg-white max-w-7xl">
-      <div className="grid grid-cols-12 gap-6 p-6 bg-white dark:bg-grey-900">
-        <div className="col-span-12 flex items-center justify-between gap-4">
-          <DatePicker />
-          <div className="ml-auto">
-            <DateFilter />
-          </div>
-        </div>
-        <div className="col-span-12 grid grid-cols-12 gap-6">
-          <div className="col-span-3">
-            <Suspense fallback={<Loading />}>
-              <UsersChart dateRange={dateRange} />
-            </Suspense>
-          </div>
-          <div className="col-span-3">
-            <Suspense fallback={<Loading />}>
-              <IncidentMessagesChart dateRange={dateRange} />
-            </Suspense>
-          </div>
-          <div className="col-span-3">
-            <Suspense fallback={<Loading />}>
-              <SubscriptionsChart dateRange={dateRange} />
-            </Suspense>
-          </div>
-          <div className="col-span-3">
-            <Suspense fallback={<Loading />}>
-              <NotificationChart dateRange={dateRange} />
-            </Suspense>
-          </div>
-        </div>
-        <div className="col-span-12">
-          <Suspense fallback={<Loading />}>
-            <WeeklyDataChart dateRange={dateRange} />
-          </Suspense>
-        </div>
-        <div className="col-span-6">
+    <div className="bg-white dark:bg-grey-900 max-w-7xl max-h-svw p-6">
+      <div className="grid grid-cols-4 gap-6">
+        <Suspense fallback={<Loading />}>
+          <UsersChart dateRange={dateRange} />
+        </Suspense>
+        <Suspense fallback={<Loading />}>
+          <IncidentMessagesChart dateRange={dateRange} />
+        </Suspense>
+        <Suspense fallback={<Loading />}>
+          <SubscriptionsChart dateRange={dateRange} />
+        </Suspense>
+        <Suspense fallback={<Loading />}>
+          <NotificationChart dateRange={dateRange} />
+        </Suspense>
+      </div>
+      <div className="mt-6">
+        <Suspense fallback={<Loading />}>
+          <WeeklyDataChart dateRange={dateRange} />
+        </Suspense>
+      </div>
+      <div className="grid grid-cols-12 gap-6 mt-6">
+        <div className="col-span-7">
           <Suspense fallback={<Loading />}>
             <WeeklyDataTable dateRange={dateRange} />
           </Suspense>
         </div>
-        <div className="col-span-6 grid grid-rows-2 gap-4">
+        <div className="col-span-5 grid grid-rows-1 gap-6">
           <div className="row-span-1">
             <Suspense fallback={<Loading />}>
               <SideNotificationChart dateRange={dateRange} />
