@@ -1,9 +1,10 @@
 import { ApiResponse, fetchData } from "@/app/utils/count";
 import { WeeklyData } from "./weeklyData.types";
 import { DataTableClient } from "../client/DataTableClient";
+import { DateRange } from "react-day-picker";
 
 interface DataTableProps {
-  dateRange: { from: Date | null; to: Date | null };
+  dateRange: DateRange;
 }
 
 export async function WeeklyDataTable({ dateRange }: DataTableProps) {

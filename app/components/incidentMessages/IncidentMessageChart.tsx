@@ -1,9 +1,10 @@
 import { ApiResponse, fetchData } from "@/app/utils/count";
 import { IncidentMessagesData } from "./incidentMessages.types";
 import { TopChartclient } from "../client/TopChartClient";
+import { DateRange } from "react-day-picker";
 
 interface CacheProps {
-  dateRange: { from: Date | null; to: Date | null };
+  dateRange: DateRange;
 }
 
 export async function IncidentMessagesChart({ dateRange }: CacheProps) {

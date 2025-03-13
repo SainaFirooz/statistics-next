@@ -1,9 +1,10 @@
 import { ApiResponse, fetchData } from "@/app/utils/count";
 import { NotificationsData } from "./notifications.types";
 import { NotificationClient } from "../client/NotificationClient";
+import { DateRange } from "react-day-picker";
 
 interface NotificationProps {
-  dateRange: { from: Date | null; to: Date | null };
+  dateRange: DateRange;
 }
 
 export async function SideNotificationChart({ dateRange }: NotificationProps) {

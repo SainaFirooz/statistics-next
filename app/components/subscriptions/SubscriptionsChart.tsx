@@ -1,9 +1,10 @@
 import { ApiResponse, fetchData } from "@/app/utils/count";
 import { SubscriptionData } from "./subscriptions.types";
 import { TopChartclient } from "../client/TopChartClient";
+import { DateRange } from "react-day-picker";
 
 interface SubscriptionsProps {
-  dateRange: { from: Date | null; to: Date | null };
+  dateRange: DateRange;
 }
 
 export async function SubscriptionsChart({ dateRange }: SubscriptionsProps) {

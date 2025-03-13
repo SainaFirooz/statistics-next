@@ -1,9 +1,10 @@
 import { ApiResponse, fetchData } from "@/app/utils/count";
 import { WeeklyData } from "./weeklyData.types";
 import { TotalChartClient } from "../client/TotalChartClient";
+import { DateRange } from "react-day-picker";
 
 interface WeeklyDateProps {
-  dateRange: { from: Date | null; to: Date | null };
+  dateRange: DateRange;
 }
 
 export async function WeeklyDataChart({ dateRange }: WeeklyDateProps) {

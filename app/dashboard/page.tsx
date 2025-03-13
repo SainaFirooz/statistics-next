@@ -9,13 +9,21 @@ import { WeeklyDataTable } from "../components/weeklyData/WeeklyDataTable";
 import { SideNotificationChart } from "../components/notifications/SideNotificationChart";
 import UsersSideChart from "../components/users/UsersSideChart";
 import DateComponent from "../components/DateComponent";
+import { DateRange } from "react-day-picker";
 
 export const dynamic = "force-dynamic";
 
-export default async function DashboardPage() {
-  const dateRange = {
-    from: new Date("2018-01-01"),
-    to: new Date(),
+export default async function DashboardPage({
+  searchParams,
+}: {
+  searchParams: { startDate?: string; endDate?: string };
+}) {
+  function dateHelper(date: string) {
+    return new Date(date);
+  }
+  const dateRange: DateRange = {
+    from: dateHelper(searchParams.startDate ?? "2025-03-01"),
+    to: dateHelper(searchParams.endDate ?? "2025-03-01"),
   };
 
   return (

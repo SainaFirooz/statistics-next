@@ -3,9 +3,10 @@ import { UserData } from "./users.types";
 import { UsersSideChartClient } from "../client/UsersSideClient";
 import { NotificationsData } from "../notifications/notifications.types";
 import { IncidentMessagesData } from "../incidentMessages/incidentMessages.types";
+import { DateRange } from "react-day-picker";
 
 interface UsersProps {
-  dateRange: { from: Date | null; to: Date | null };
+  dateRange: DateRange;
 }
 
 export default async function UsersSideChart({ dateRange }: UsersProps) {
