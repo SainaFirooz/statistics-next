@@ -4,6 +4,7 @@ import { LineChartComponent } from "./LineClient";
 import TrendingUp from "../trending/TrendingUp";
 
 interface CharClientProps<T> {
+  days: number;
   data: T[];
   title: string;
   showTrending?: boolean;
@@ -20,6 +21,7 @@ export function TopChartclient<T>({
   data,
   title,
   chartConfig,
+  days,
 }: CharClientProps<T>) {
   return (
     <Card className="bg-white dark:bg-grey-800  border dark:border-grey-500 ">
@@ -32,7 +34,7 @@ export function TopChartclient<T>({
           {/* <TrendingDown /> */}
           <TrendingUp />
         </div>
-        <p className="text-xs text-muted-foreground">last 7 days</p>
+        <p className="text-xs text-muted-foreground">{`last ${days} days`}</p>
       </CardContent>
       <div className="h-[60px]">
         <LineChartComponent

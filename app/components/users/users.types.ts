@@ -1,5 +1,5 @@
 export interface UserData {
-  users: number;
+  count: number;
   fromDate: string;
   toDate: string;
 }

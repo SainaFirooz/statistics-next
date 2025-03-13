@@ -14,7 +14,7 @@ export const userService = {
   ORDER BY date DESC
   `;
     const result = data.map((entry) => ({
-      users: Number(entry.count),
+      count: Number(entry.count),
       fromDate: entry.date,
       toDate: entry.date,
     }));

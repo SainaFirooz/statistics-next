@@ -1,9 +1,9 @@
 import api from "./api";
 
-interface DateRange {
-  from: Date | null;
-  to: Date | null;
-}
+type DateRange = {
+  from: Date | undefined;
+  to?: Date | undefined;
+};
 export type ApiResponse<T> =
   | { success: true; data: T }
   | { success: false; error: string; status: number };

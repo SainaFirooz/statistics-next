@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import Loading from "./loading";
-import { UsersChart } from "../components/users/UsersChart";
+import { TopChart, UsersChart } from "../components/users/UsersChart";
 import { SubscriptionsChart } from "../components/subscriptions/SubscriptionsChart";
 import { NotificationChart } from "../components/notifications/TopNotificationsChart";
 import { IncidentMessagesChart } from "../components/incidentMessages/IncidentMessageChart";
@@ -10,6 +10,8 @@ import { SideNotificationChart } from "../components/notifications/SideNotificat
 import UsersSideChart from "../components/users/UsersSideChart";
 import DateComponent from "../components/DateComponent";
 import { DateRange } from "react-day-picker";
+import { fetchData } from "../utils/count";
+import { UserData } from "../components/users/users.types";
 
 export const dynamic = "force-dynamic";
 
@@ -26,12 +28,26 @@ export default async function DashboardPage({
     to: dateHelper(searchParams.endDate ?? "2025-03-01"),
   };
 
+  const [data1] = await Promise.all([
+    fetchData<ApiResponse<UserData[]>>(
+      `${process.env.BACKEND_URL}/api/users`,
+      dateRange
+    ),
+
+    // ...other API calls
+  ]);
+
   return (
     <div className="bg-white dark:bg-grey-900 max-w-7xl max-h-svw ">
       <DateComponent />
       <div className="grid grid-cols-4 gap-6">
         <Suspense fallback={<Loading />}>
-          <UsersChart dateRange={dateRange} />
+          <TopChart
+            dateRange={dateRange}
+            title="Users"
+            lineColor="#F6A600"
+            data={data1}
+          />
         </Suspense>
         <Suspense fallback={<Loading />}>
           <IncidentMessagesChart dateRange={dateRange} />
