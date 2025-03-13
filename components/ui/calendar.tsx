@@ -38,7 +38,8 @@ function Calendar({
         row: "flex w-full mt-2",
         cell: cn(
           "relative p-0 text-center text-sm focus-within:relative focus-within:z-20",
-          "[&:has([aria-selected])]:bg-blue-10", // Updated to apply bg-blue-10 to all selected cells
+          "[&:has([aria-selected])]:bg-blue-10",
+          "dark:[&:has([aria-selected])]:bg-blue-700",
           props.mode === "range"
             ? "[&:has(>.day-range-end)]:rounded-r-md [&:has(>.day-range-start)]:rounded-l-md first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md"
             : "[&:has([aria-selected])]:rounded-md"
@@ -50,13 +51,13 @@ function Calendar({
         day_range_start: "day-range-start",
         day_range_end: "day-range-end",
         day_selected:
-          "bg-blue-10 text-primary-foreground hover:bg-blue-10 hover:text-primary-foreground focus:bg-blue-10 focus:text-primary-foreground", // Ensure this applies to the entire range
+          "bg-blue-10 dark:bg-blue-700  text-primary-foreground hover:bg-blue-50 dark:hover:bg-blue-600 hover:text-primary-foreground focus:bg-blue-10 dark:focus:bg-blue-700  focus:text-primary-foreground",
         day_today: "bg-accent text-accent-foreground",
         day_outside:
           "day-outside text-muted-foreground aria-selected:bg-accent/50 aria-selected:text-muted-foreground",
         day_disabled: "text-muted-foreground opacity-50",
         day_range_middle:
-          "aria-selected:bg-blue-10 aria-selected:text-primary-foreground", // Updated to ensure bg-blue-10 is applied to middle of the range
+          "aria-selected:bg-blue-10 dark:aria-selected:bg-blue-700 aria-selected:text-primary-foreground",
         day_hidden: "invisible",
         ...classNames,
       }}

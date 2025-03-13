@@ -6,10 +6,9 @@ import { NotificationChart } from "../components/notifications/TopNotificationsC
 import { IncidentMessagesChart } from "../components/incidentMessages/IncidentMessageChart";
 import { WeeklyDataChart } from "../components/weeklyData/WeeklyDataChart";
 import { WeeklyDataTable } from "../components/weeklyData/WeeklyDataTable";
-import { DatePicker } from "../components/DatePicker";
-import { DateFilter } from "../components/DateFilter";
 import { SideNotificationChart } from "../components/notifications/SideNotificationChart";
 import UsersSideChart from "../components/users/UsersSideChart";
+import DateComponent from "../components/DateComponent";
 
 export const dynamic = "force-dynamic";
 
@@ -21,10 +20,7 @@ export default async function DashboardPage() {
 
   return (
     <div className="bg-white dark:bg-grey-900 max-w-7xl max-h-svw ">
-      <div className="flex justify-between mb-6">
-        <DatePicker />
-        <DateFilter />
-      </div>
+      <DateComponent />
       <div className="grid grid-cols-4 gap-6">
         <Suspense fallback={<Loading />}>
           <UsersChart dateRange={dateRange} />

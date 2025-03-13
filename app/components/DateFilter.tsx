@@ -1,44 +1,37 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { subDays } from "date-fns";
-import React, { useState } from "react";
+import React from "react";
+import { ToggleButtonValues } from "./dateComponentTypes";
 
-export function DateFilter() {
-  const [dateRange, setDateRange] = useState<{ from: Date; to: Date } | null>(
-    null
-  );
+type Props = {
+  handleOnButtonClick: (value: ToggleButtonValues) => void;
+};
 
+export function DateFilter({ handleOnButtonClick }: Props) {
   return (
-    <div className="inline-flex border rounded-lg overflow-hidden">
+    <div className="inline-flex border  dark:border-grey-500 rounded-lg overflow-hidden bg-white dark:bg-grey-800 ">
       <Button
         variant="ghost"
-        onClick={() =>
-          setDateRange({ from: new Date(), to: subDays(new Date(), 1) })
-        }
+        onClick={() => handleOnButtonClick(ToggleButtonValues.DAY)}
       >
         24 hours
       </Button>
       <Button
-        variant="default"
-        onClick={() =>
-          setDateRange({ from: new Date(), to: subDays(new Date(), 7) })
-        }
+        variant="ghost"
+        onClick={() => handleOnButtonClick(ToggleButtonValues.WEEK)}
       >
         7 days
       </Button>
       <Button
         variant="ghost"
-        onClick={() =>
-          setDateRange({ from: new Date(), to: subDays(new Date(), 30) })
-        }
+        onClick={() => handleOnButtonClick(ToggleButtonValues.MONTH)}
       >
         30 days
       </Button>
       <Button
         variant="ghost"
-        onClick={() =>
-          setDateRange({ from: new Date(), to: subDays(new Date(), 365) })
-        }
+        onClick={() => handleOnButtonClick(ToggleButtonValues.YEAR)}
       >
         12 months
       </Button>
