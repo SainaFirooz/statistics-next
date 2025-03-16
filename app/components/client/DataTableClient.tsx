@@ -26,7 +26,7 @@ interface DataTableClientProps {
 
 export function DataTableClient({ initialData }: DataTableClientProps) {
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 12;
+  const itemsPerPage = 15;
 
   const totalItems = initialData.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
@@ -48,9 +48,9 @@ export function DataTableClient({ initialData }: DataTableClientProps) {
   };
 
   return (
-    <Card className="bg-white dark:bg-grey-800 border dark:border-grey-500 pb-6 gap-6">
+    <Card className="bg-white dark:bg-grey-800 border dark:border-grey-500 pb-6 gap-6 min-w-[706px] min-h-[789px]">
       <CardHeader>
-        <CardTitle className="font-bold">Data Table</CardTitle>
+        <CardTitle className="font-bold">Total</CardTitle>
         <Table className="">
           <TableHeader>
             <TableRow>
@@ -58,10 +58,10 @@ export function DataTableClient({ initialData }: DataTableClientProps) {
                 Date
               </TableHead>
               <TableHead className="font-bold text-shades-100 dark:text-grey-100">
-                Vy API Messages
+                Incidents
               </TableHead>
               <TableHead className="font-bold text-shades-100 dark:text-grey-100">
-                Sent Notifications
+                Push Notifications
               </TableHead>
               <TableHead className="font-bold text-shades-100 dark:text-grey-100">
                 Subscriptions
@@ -86,7 +86,7 @@ export function DataTableClient({ initialData }: DataTableClientProps) {
           </TableBody>
         </Table>
 
-        <Pagination className="pb-6 pt-6">
+        <Pagination className="pb-2 pt-2">
           <PaginationContent>
             <PaginationItem className="text-grey-900 dark:text-grey-10">
               <PaginationPrevious

@@ -2,12 +2,15 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LineChartComponent } from "./LineClient";
 import TrendingUp from "../trending/TrendingUp";
+import { TopChartDataInput } from "../topChart/users.types";
+import TrendingDown from "../trending/TrendingDown";
 
-interface CharClientProps<T> {
+interface CharClientProps<TopChartDataInput> {
   days: number;
-  data: T[];
+  data: TopChartDataInput[];
   title: string;
-  showTrending?: boolean;
+  percentageChange: number;
+  total: number;
   chartConfig: {
     color: string;
     label: string;
@@ -17,22 +20,34 @@ interface CharClientProps<T> {
   };
 }
 
-export function TopChartclient<T>({
+export function TopChartclient({
   data,
   title,
+  total,
   chartConfig,
   days,
-}: CharClientProps<T>) {
+  percentageChange,
+}: CharClientProps<TopChartDataInput>) {
+  const renderTrendIndicator = () => {
+    if (Math.abs(percentageChange) < 0.01) {
+      return null;
+    }
+    return percentageChange < 0 ? (
+      <TrendingDown percentageChange={percentageChange} />
+    ) : (
+      <TrendingUp percentageChange={percentageChange} />
+    );
+  };
+
   return (
-    <Card className="bg-white dark:bg-grey-800  border dark:border-grey-500 ">
+    <Card className="bg-white dark:bg-grey-800  border dark:border-grey-500 min-w-[290px] min-h-[170px]">
       <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
         <CardTitle className="text-sm font-bold">{title}</CardTitle>
       </CardHeader>
       <CardContent>
         <div className="flex items-center gap-3">
-          <div className="text-h2 font-bold">{data.length}</div>
-          {/* <TrendingDown /> */}
-          <TrendingUp />
+          <div className="text-h2 font-bold">{total}</div>
+          {renderTrendIndicator()}
         </div>
         <p className="text-xs text-muted-foreground">{`last ${days} days`}</p>
       </CardContent>

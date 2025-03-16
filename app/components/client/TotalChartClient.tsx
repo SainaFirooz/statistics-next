@@ -31,7 +31,7 @@ const chartConfig = {
     color: "#4A806A",
   },
   vyMessages: {
-    label: "Vy API Messages",
+    label: "Incidents",
     color: "#015AAA",
   },
   sentNotifications: {

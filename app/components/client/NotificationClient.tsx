@@ -22,25 +22,31 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { NotificationsData } from "../notifications/notifications.types";
-import { format } from "date-fns";
+import { format, parseISO } from "date-fns";
+import { CountData } from "@/app/global.types";
 
 const chartConfig = {
   notifications: {
-    label: "Sent Notifications",
+    label: "Push Notifications",
     color: "#E5E8EC",
   },
 } satisfies ChartConfig;
 
 interface NotificationClientProps {
-  data: NotificationsData[];
+  data: CountData[];
 }
 
 export function NotificationClient({ data }: NotificationClientProps) {
+  const formattedData = data.map((item) => ({
+    ...item,
+    formattedDate: format(parseISO(item.fromDate), "MMM dd"),
+    notifications: item.count,
+  }));
+
   return (
-    <Card className="bg-white dark:bg-grey-800 border dark:border-grey-500 mb-0">
+    <Card className="bg-white dark:bg-grey-800 border dark:border-grey-500 mb-0 min–w-[508px] min-h-[379px]">
       <CardHeader>
-        <CardTitle className="font-bold">Sent Notifications</CardTitle>
+        <CardTitle className="font-bold">Push Notifications</CardTitle>
         <CardDescription className="dark:text-grey-100 font-medium">
           Daily total push notifications
         </CardDescription>
@@ -49,10 +55,12 @@ export function NotificationClient({ data }: NotificationClientProps) {
         <ChartContainer config={chartConfig}>
           <AreaChart
             accessibilityLayer
-            data={data}
+            data={formattedData}
             margin={{
               left: 12,
               right: 12,
+              top: 20,
+              bottom: 8,
             }}
           >
             <CartesianGrid
@@ -62,18 +70,19 @@ export function NotificationClient({ data }: NotificationClientProps) {
             />
             <YAxis tickLine={false} axisLine={false} tickMargin={15} />
             <XAxis
-              dataKey="toDate"
+              dataKey="formattedDate"
               tickLine={false}
               axisLine={false}
               tickMargin={8}
-              tickFormatter={(value) => format(new Date(value), "MMM dd")}
+              interval="preserveStartEnd"
             />
             <ChartTooltip
               cursor={false}
               content={<ChartTooltipContent indicator="dot" />}
             />
             <Area
-              dataKey="queueUserIds"
+              name="Push Notifications"
+              dataKey="notifications"
               type="linear"
               fill="#3079DB"
               fillOpacity={0.1}
@@ -87,6 +96,7 @@ export function NotificationClient({ data }: NotificationClientProps) {
               }}
             >
               <LabelList
+                dataKey="notifications"
                 position="top"
                 offset={12}
                 className="fill-foreground"
