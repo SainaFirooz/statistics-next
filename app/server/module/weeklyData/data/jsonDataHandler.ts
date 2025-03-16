@@ -16,7 +16,6 @@ const dataFilePath = path.resolve(
 async function ensureFileExists() {
   try {
     await fs.access(dataFilePath);
-    console.log(dataFilePath);
   } catch (error) {
     console.error(error);
     await fs.writeFile(dataFilePath, JSON.stringify([], null, 2));
