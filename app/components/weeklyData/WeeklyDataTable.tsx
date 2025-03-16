@@ -1,32 +1,19 @@
-import { ApiResponse, fetchData } from "@/app/utils/count";
+import { ApiResponse } from "@/app/utils/fetchData";
 import { WeeklyData } from "./weeklyData.types";
-import { DataTableClient } from "./DataTableClient";
+import { DataTableClient } from "../client/DataTableClient";
 
 interface DataTableProps {
-  dateRange: { from: Date | null; to: Date | null };
+  data: ApiResponse<WeeklyData[]>;
 }
 
-export async function WeeklyDataTable({ dateRange }: DataTableProps) {
-  const validDateRange = {
-    from: dateRange.from ?? new Date(),
-    to: dateRange.to ?? new Date(),
-  };
+export async function WeeklyDataTable({ data }: DataTableProps) {
+  if (!data.success) {
+    return <div>{`${data.error} - ${data.status}`}</div>;
+  }
 
-  const response: ApiResponse<WeeklyData[]> = await fetchData<WeeklyData[]>(
-    `${process.env.BACKEND_URL}/api/weeklyData`,
-    validDateRange
+  const sortedData = [...data.data].sort(
+    (a, b) => new Date(b.toDate).getTime() - new Date(a.toDate).getTime()
   );
 
-  if (!response.success) {
-    return (
-      <div>
-        Error: {response.error} (Status: {response.status})
-      </div>
-    );
-  }
-  if (!response.data || response.data.length === 0) {
-    return <div>No data available</div>;
-  }
-
-  return <DataTableClient initialData={response.data ?? []} />;
+  return <DataTableClient initialData={sortedData} />;
 }

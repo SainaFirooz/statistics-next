@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "./components/theme-provider";
+import Header from "./components/Header";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,9 +18,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={montserrat.className}>
-        <main>{children}</main>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${montserrat.className} dark:bg-grey-900 bg-white
+`}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
+          <main className="flex justify-center justify-items-center dark:bg-grey-900 mt-16">
+            {children}
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   );

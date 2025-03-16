@@ -39,23 +39,22 @@ model TrainLineDelayedPercentage {
 }
 
 model VyNotificationCache {
-  uuid                 String                 @id
-  version              Int?
-  nominalDate          String?
-  trainId              String?
-  lineId               String?
-  createdAt            DateTime               @default(now())
-  updatedAt            DateTime
-  type                 String?
-  state                String?
-  text                 String?
-  trainIdWithOperator  String?
-  lineName             String?
-  toStop               Json?
-  processed            Boolean                @default(false)
-  fromStop             Json?
-  action               String?
-  vytogGeneralMessages vytogGeneralMessages[]
+  uuid                String   @id
+  version             Int?
+  nominalDate         String?
+  trainId             String?
+  lineId              String?
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime
+  type                String?
+  state               String?
+  text                String?
+  trainIdWithOperator String?
+  lineName            String?
+  toStop              Json?
+  processed           Boolean  @default(false)
+  fromStop            Json?
+  action              String?
 
   @@index([nominalDate])
   @@index([processed])
@@ -174,7 +173,7 @@ model trainStations {
   updatedAt               DateTime            @default(now())
   trainAnnouncement       trainAnnouncement[]
   countyNumber            countyNumber        @relation(fields: [CountyNo], references: [id], onDelete: Cascade)
-  users                   users[]
+  users                   users[]             @relation("trainStationsTousers")
 }
 
 model users {
@@ -183,23 +182,21 @@ model users {
   createdAt                 DateTime                    @default(now())
   updatedAt                 DateTime                    @default(now())
   notificationSubscriptions notificationSubscriptions[]
-  trainStations             trainStations[]
-  vytogNotificationMessages vytogNotificationMessages[]
+  trainStations             trainStations[]             @relation("trainStationsTousers")
+  vytogNotificationMessages vytogNotificationMessages[] @relation("usersTovytogNotificationMessages")
 }
 
 model vytogGeneralMessages {
-  uuid                    String              @id
-  version                 Int
-  state                   String
-  createdAt               DateTime            @default(now())
-  updatedAt               DateTime
-  type                    String
-  text                    String
-  affectedLegs            Json?
-  incidentId              String              @unique
-  stretchName             String
-  vyNotificationCacheUuid String
-  VyNotificationCache     VyNotificationCache @relation(fields: [vyNotificationCacheUuid], references: [uuid])
+  uuid         String   @id
+  version      Int
+  state        String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime
+  type         String
+  text         String
+  affectedLegs Json?
+  incidentId   String   @unique
+  stretchName  String
 }
 
 model vytogNotificationMessages {
@@ -212,7 +209,7 @@ model vytogNotificationMessages {
   subscriptionId            String?
   nominalDate               DateTime                   @default(now())
   notificationSubscriptions notificationSubscriptions? @relation(fields: [subscriptionId], references: [id])
-  users                     users[]
+  users                     users[]                    @relation("usersTovytogNotificationMessages")
 }
 
 enum TransportEnum {

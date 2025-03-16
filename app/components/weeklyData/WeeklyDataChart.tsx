@@ -1,34 +1,22 @@
-import { ApiResponse, fetchData } from "@/app/utils/count";
 import { WeeklyData } from "./weeklyData.types";
-import { ChartClient } from "./ChartClient";
+import { TotalChartClient } from "../client/TotalChartClient";
+import { ApiResponse } from "@/app/utils/fetchData";
 
 interface WeeklyDateProps {
-  dateRange: { from: Date | null; to: Date | null };
+  data: ApiResponse<WeeklyData[]>;
 }
 
-export async function WeeklyDataChart({ dateRange }: WeeklyDateProps) {
-  const validDateRange = {
-    from: dateRange.from ?? new Date(),
-    to: dateRange.to ?? new Date(),
-  };
-
-  const response: ApiResponse<WeeklyData[]> = await fetchData<WeeklyData[]>(
-    `${process.env.BACKEND_URL}/api/weeklyData`,
-    validDateRange
-  );
-  if (!response.success) {
-    return <div>{`${response.error} - ${response.status}`}</div>;
+export async function WeeklyDataChart({ data }: WeeklyDateProps) {
+  if (!data.success) {
+    return <div>{`${data.error} - ${data.status}`}</div>;
   }
-  if (!response.data || response.data.length === 0) {
-    return <div>No data available</div>;
-  }
-  const sortedData = response.data.sort(
+  const sortedData = [...data.data].sort(
     (a, b) => new Date(a.toDate).getTime() - new Date(b.toDate).getTime()
   );
 
   return (
     <div>
-      <ChartClient data={sortedData} />
+      <TotalChartClient data={sortedData} />
     </div>
   );
 }
