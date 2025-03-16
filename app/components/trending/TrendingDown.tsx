@@ -1,8 +1,13 @@
-function TrendingDown() {
+interface TrendingDownProps {
+  percentageChange: number;
+}
+function TrendingDown({ percentageChange }: TrendingDownProps) {
+  const displayValue = Math.abs(percentageChange).toFixed(2);
+
   return (
     <div className="bg-error-10 dark:bg-error-50 p-2 rounded-lg flex items-center gap-3">
       <p className="text-cap text-error-50 font-medium dark:text-error-10">
-        -0,5%
+        -{displayValue}%
       </p>
       <svg
         xmlns="http://www.w3.org/2000/svg"

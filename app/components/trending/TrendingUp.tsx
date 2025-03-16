@@ -1,8 +1,14 @@
-function TrendingUp() {
+interface TrendingUpProps {
+  percentageChange: number;
+}
+
+function TrendingUp({ percentageChange }: TrendingUpProps) {
+  const displayValue = Math.abs(percentageChange).toFixed(2);
+
   return (
     <div className="bg-success-20 dark:bg-success-70 p-2 rounded-lg flex items-center gap-3">
       <p className="text-cap text-success-50 dark:text-success-20 font-medium">
-        +2,5%
+        +{displayValue}%
       </p>
       <svg
         xmlns="http://www.w3.org/2000/svg"
