@@ -1,4 +1,4 @@
-export interface UserType {
+export interface AllType {
   count: number;
   date: Date;
 }
