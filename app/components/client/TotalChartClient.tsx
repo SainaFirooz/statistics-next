@@ -67,7 +67,7 @@ export function TotalChartClient({ data }: ChartClientProps) {
               dominantBaseline="middle"
               className="font-medium text-sm fill-black dark:fill-gray-100"
             >
-              {label}:
+              {label}:{label}:
             </text>
             <text
               x={x}
