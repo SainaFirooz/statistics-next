@@ -14,6 +14,9 @@ const Header = () => {
   useEffect(() => {
     setMounted(true);
   }, []);
+  const handleLogoClick = () => {
+    window.location.assign("/dashboard");
+  };
 
   return (
     <header className="flex items-center justify-between p-4 border-b-2 border-b-yellow-500 bg-white dark:bg-grey-800">
@@ -25,9 +28,19 @@ const Header = () => {
             width={239}
             height={56}
             priority
+            onClick={handleLogoClick}
+            className="cursor-pointer"
           />
         ) : (
-          <Image src={lightLogo} alt="Logo" width={120} height={40} priority />
+          <Image
+            src={lightLogo}
+            alt="Logo"
+            width={120}
+            height={40}
+            priority
+            onClick={handleLogoClick}
+            className="cursor-pointer"
+          />
         )}
       </div>
 
