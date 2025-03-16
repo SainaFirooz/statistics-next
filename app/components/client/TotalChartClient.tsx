@@ -62,16 +62,16 @@ export function TotalChartClient({ data }: ChartClientProps) {
           <>
             <text
               x={x}
-              y={y - 38}
+              y={y - 40}
               textAnchor="middle"
               dominantBaseline="middle"
               className="font-medium text-sm fill-black dark:fill-gray-100"
             >
-              {label}:{label}:
+              {label}:
             </text>
             <text
               x={x}
-              y={y - 18}
+              y={y - 20}
               fill="#FFFFF"
               textAnchor="middle"
               dominantBaseline="middle"
@@ -103,8 +103,8 @@ export function TotalChartClient({ data }: ChartClientProps) {
             data={data}
             margin={{
               left: 12,
-              right: 69,
-              top: 25,
+              right: 75,
+              top: 30,
               bottom: 5,
             }}
           >
