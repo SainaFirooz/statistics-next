@@ -11,6 +11,9 @@ import { TopChartDataInput } from "../components/topChart/users.types";
 import { AllData } from "../global.types";
 import { WeeklyData } from "../components/weeklyData/weeklyData.types";
 import DateComponent from "../components/date/DateComponent";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+import { authOptions } from "../api/auth/authOptions";
 
 export const dynamic = "force-dynamic";
 
@@ -19,6 +22,10 @@ export default async function DashboardPage({
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    redirect("/login");
+  }
   const params = await searchParams;
   const startDateParam =
     typeof params.startDate === "string" ? params.startDate : "2024-01-01";
