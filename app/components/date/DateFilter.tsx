@@ -9,7 +9,7 @@ type Props = {
 
 export function DateFilter({ handleOnButtonClick }: Props) {
   return (
-    <div className="inline-flex border  dark:border-grey-500 rounded-lg overflow-hidden bg-white dark:bg-grey-800 ">
+    <div className="inline-flex border  dark:border-grey-500 rounded-lg overflow-hidden bg-white dark:bg-grey-800">
       <Button
         variant="ghost"
         onClick={() => handleOnButtonClick(ToggleButtonValues.DAY)}

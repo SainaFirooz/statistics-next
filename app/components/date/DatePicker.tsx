@@ -4,7 +4,6 @@ import * as React from "react";
 import { format } from "date-fns";
 import { CalendarIcon } from "lucide-react";
 import { DateRange } from "react-day-picker";
-
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -37,7 +36,7 @@ export function DatePicker({
             id="date"
             variant={"outline"}
             className={cn(
-              "w-[226px] justify-start text-left font-normal text-blue-700 dark:text-blue-100 border border-blue-700 border hover:bg-blue-10  dark:bg-grey-800 dark:border-blue-200 ",
+              "w-[226px] justify-start text-left font-normal text-blue-700 dark:text-blue-100 border border-blue-700 border hover:bg-blue-10 dark:bg-grey-800 dark:border-blue-200 ",
               !date && "text-muted-foreground"
             )}
           >

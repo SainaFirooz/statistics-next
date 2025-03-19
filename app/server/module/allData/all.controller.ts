@@ -13,7 +13,6 @@ async function GET(req: NextRequest) {
       query.toDate as string
     );
 
-    console.log(from, to);
     const result = await notificationCacheService.countMultipleMetrics(
       from,
       to
