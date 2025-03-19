@@ -16,6 +16,7 @@ import { useEffect, useState } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { redirect, useRouter } from "next/navigation";
 import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 
 export default function Login() {
   const { theme } = useTheme();
@@ -62,12 +63,12 @@ export default function Login() {
             width={259}
             height={56}
           />
-          <CardTitle className="font-bold pt-7">Welcome</CardTitle>
+          <CardTitle className="font-bold pt-6">Welcome</CardTitle>
           <CardDescription className="text-grey-600 dark:text-grey-100">
-            Please enter your details to login.{" "}
+            Please enter your details to login
           </CardDescription>
         </CardHeader>
-        <CardContent className="p-8">
+        <CardContent className="p-8 pt-2">
           <form onSubmit={handleLogin} className="space-y-4">
             {error && <p className="text-red-500">{error}</p>}
 
@@ -77,11 +78,11 @@ export default function Login() {
                   <span>Email</span>
                   <span className="text-red-500 p-1">*</span>
                 </Label>
-                <input
+                <Input
                   id="email"
                   type="email"
                   placeholder="johndoe@gmail.com"
-                  className="w-full h-[48px] p-2 border rounded dark:bg-grey-600 dark:border-grey-500"
+                  className="w-full h-[48px] p-2 border rounded dark:bg-grey-600 dark:border-grey-500 p-4"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -96,11 +97,11 @@ export default function Login() {
                   <span>Password</span>
                   <span className="text-red-500 p-1">*</span>
                 </Label>
-                <input
+                <Input
                   id="password"
                   type="password"
                   placeholder="Enter your password"
-                  className="w-full h-[48px] p-2 border rounded dark:bg-grey-600 dark:border-grey-500"
+                  className="w-full h-[48px] p-2 border rounded dark:bg-grey-600 dark:border-grey-500 p-4"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -110,7 +111,7 @@ export default function Login() {
                 type="submit"
                 className="w-full bg-yellow-200 text-blue-700 font-bold"
               >
-                Sign in
+                Login
               </Button>
             </div>
           </form>
