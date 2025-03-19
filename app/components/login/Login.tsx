@@ -59,7 +59,7 @@ export default function Login() {
           <Image
             src={theme === "dark" ? darkLogo : lightLogo}
             alt="Norrtag Logo"
-            width={239}
+            width={259}
             height={56}
           />
           <CardTitle className="font-bold pt-7">Welcome</CardTitle>

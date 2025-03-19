@@ -29,7 +29,7 @@ const Header = () => {
           <Image
             src={theme === "dark" ? darkLogo : lightLogo}
             alt="Logo"
-            width={239}
+            width={269}
             height={56}
             priority
             onClick={handleLogoClick}
