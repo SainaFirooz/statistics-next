@@ -12,23 +12,27 @@ export default function DateComponent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const [dateRange, setDateRange] = useState<DateRange>(() => {
+  const [dateRange, setDateRange] = useState<DateRange | undefined>(() => {
     const fromParam = searchParams.get("startDate");
     const toParam = searchParams.get("endDate");
 
-    return {
-      from: fromParam ? new Date(fromParam) : new Date(),
-      to: toParam ? new Date(toParam) : new Date(),
-    };
+    if (fromParam && toParam) {
+      return {
+        from: new Date(fromParam),
+        to: new Date(toParam),
+      };
+    }
+    return undefined;
   });
 
-  function handleDateOnChange(dateRange: DateRange | undefined): void {
-    if (dateRange && dateRange.from && dateRange.to) {
-      setDateRange(dateRange);
-
-      const startDate = dateRange.from.toISOString();
-      const endDate = dateRange.to.toISOString();
+  function handleDateOnChange(newDateRange: DateRange | undefined): void {
+    setDateRange(newDateRange);
+    if (newDateRange && newDateRange.from && newDateRange.to) {
+      const startDate = newDateRange.from.toISOString();
+      const endDate = newDateRange.to.toISOString();
       router.push(`/dashboard?startDate=${startDate}&endDate=${endDate}`);
+    } else if (newDateRange === undefined) {
+      router.push("/dashboard");
     }
   }
 
@@ -37,14 +41,10 @@ export default function DateComponent() {
       from: subDays(new Date(), buttonValue),
       to: new Date(),
     };
-
     setDateRange(newDateRange);
-
-    if (newDateRange.from && newDateRange.to) {
-      const startDate = newDateRange.from.toISOString();
-      const endDate = newDateRange.to.toISOString();
-      router.push(`/dashboard?startDate=${startDate}&endDate=${endDate}`);
-    }
+    const startDate = newDateRange.from.toISOString();
+    const endDate = newDateRange.to.toISOString();
+    router.push(`/dashboard?startDate=${startDate}&endDate=${endDate}`);
   }
   return (
     <div className="flex justify-between mb-6 ">
