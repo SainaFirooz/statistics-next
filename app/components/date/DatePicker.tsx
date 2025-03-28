@@ -41,7 +41,7 @@ export function DatePicker({
               id="date"
               variant={"outline"}
               className={cn(
-                "w-full justify-start text-left font-normal text-blue-700 dark:text-blue-10 border border-blue-700 hover:bg-blue-10 dark:hover:bg-grey-600  dark:bg-grey-800 dark:border-blue-200 pr-8 text-blue-700 dark:fill-blue-100"
+                "w-full justify-start text-left font-normal dark:text-blue-10 border border-blue-700 hover:bg-blue-10 dark:hover:bg-grey-600  dark:bg-grey-800 dark:border-blue-200 pr-8 text-blue-700 dark:fill-blue-100"
               )}
             >
               <CalendarIcon className="mr-2 h-4 w-4" />

@@ -82,7 +82,7 @@ export default function Login() {
                   id="email"
                   type="email"
                   placeholder="johndoe@gmail.com"
-                  className="w-full h-[48px] p-2 border rounded dark:bg-grey-600 dark:border-grey-500 p-4"
+                  className="w-full h-[48px]  border rounded dark:bg-grey-600 dark:border-grey-500 p-4"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -101,7 +101,7 @@ export default function Login() {
                   id="password"
                   type="password"
                   placeholder="Enter your password"
-                  className="w-full h-[48px] p-2 border rounded dark:bg-grey-600 dark:border-grey-500 p-4"
+                  className="w-full h-[48px] border rounded dark:bg-grey-600 dark:border-grey-500 p-4"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
