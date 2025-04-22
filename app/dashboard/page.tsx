@@ -11,9 +11,8 @@ import { TopChartDataInput } from "../components/topChart/users.types";
 import { AllData } from "../global.types";
 import { WeeklyData } from "../components/weeklyData/weeklyData.types";
 import DateComponent from "../components/date/DateComponent";
-import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
-import { authOptions } from "../api/auth/authOptions";
+import { auth } from "@/auth";
 
 export const dynamic = "force-dynamic";
 
@@ -22,7 +21,7 @@ export default async function DashboardPage({
 }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
-  const session = await getServerSession(authOptions);
+  const session = await auth();
   if (!session) {
     redirect("/login");
   }
@@ -56,7 +55,7 @@ export default async function DashboardPage({
   return (
     <div className="bg-white dark:bg-grey-900 max-w-7xl max-h-svw pb-6">
       <DateComponent />
-      <div className="grid grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <Suspense fallback={<Loading />}>
           <TopChart
             dateRange={dateRange}
@@ -109,23 +108,20 @@ export default async function DashboardPage({
           <WeeklyDataChart data={weeklyData} />
         </Suspense>
       </div>
-      <div className="grid grid-cols-12 gap-6 mt-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-6">
         <div className="col-span-7">
           <Suspense fallback={<Loading />}>
             <WeeklyDataTable data={weeklyData} />
           </Suspense>
         </div>
-        <div className="col-span-5 grid grid-rows-1">
-          <div className="row-span-1">
-            <Suspense fallback={<Loading />}>
-              <SideNotificationChart data={data} />
-            </Suspense>
-          </div>
-          <div className="row-span-1">
-            <Suspense fallback={<Loading />}>
-              <UsersSideChart data={data} />
-            </Suspense>
-          </div>
+        <div className="lg:col-span-5 grid gap-6">
+          <Suspense fallback={<Loading />}>
+            <SideNotificationChart data={data} />
+          </Suspense>
+
+          <Suspense fallback={<Loading />}>
+            <UsersSideChart data={data} />
+          </Suspense>
         </div>
       </div>
     </div>
