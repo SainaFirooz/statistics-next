@@ -1,7 +1,7 @@
 "use client";
 
-import lightLogo from "../../assets/Norrtag_VY_orig_rgb.png";
-import darkLogo from "../../assets/Norrtag_VY_ljusbl_linje_rgb.png";
+import lightLogo from "../../assets/TrackMind.png";
+import darkLogo from "../../assets/TrackMindDarkmode.png";
 import {
   Card,
   CardHeader,
@@ -60,7 +60,7 @@ export default function Login() {
           <Image
             src={theme === "dark" ? darkLogo : lightLogo}
             alt="Norrtag Logo"
-            width={259}
+            width={120}
             height={56}
           />
           <CardTitle className="font-bold pt-6">Welcome</CardTitle>
