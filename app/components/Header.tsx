@@ -5,8 +5,8 @@ import { ModeToggle } from "./ToggleDarkMode";
 import { useState, useEffect } from "react";
 import { useSession, signOut } from "next-auth/react";
 
-import lightLogo from "../assets/Norrtag_VY_orig_rgb.png";
-import darkLogo from "../assets/Norrtag_VY_ljusbl_linje_rgb.png";
+import lightLogo from "../assets/TrackMind.png";
+import darkLogo from "../assets/TrackMindDarkmode.png";
 import { Button } from "@/components/ui/button";
 
 const Header = () => {
@@ -29,7 +29,7 @@ const Header = () => {
           <Image
             src={theme === "dark" ? darkLogo : lightLogo}
             alt="Logo"
-            width={269}
+            width={130}
             height={56}
             priority
             onClick={handleLogoClick}
@@ -39,7 +39,7 @@ const Header = () => {
           <Image
             src={lightLogo}
             alt="Logo"
-            width={120}
+            width={130}
             height={40}
             priority
             onClick={handleLogoClick}
