@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { parseQueryParams } from "../../utils/request";
 import { handleError } from "../../utils/errorHandler";
 import { dateValidator } from "../../utils/dateValidator";
-import { notificationCacheService } from "./all.repository";
+import { fetchAllService } from "./all.repository";
 
 async function GET(req: NextRequest) {
   try {
@@ -13,10 +13,7 @@ async function GET(req: NextRequest) {
       query.toDate as string
     );
 
-    const result = await notificationCacheService.countMultipleMetrics(
-      from,
-      to
-    );
+    const result = await fetchAllService.countMultipleMetrics(from, to);
     return NextResponse.json(result);
   } catch (error) {
     return handleError(error);
