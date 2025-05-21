@@ -187,5 +187,124 @@
     "vyMessages": 6511,
     "sentNotifications": 3.73,
     "users": 11237
+  },
+  {
+    "toDate": "2025-01-27",
+    "subscriptions": 2965,
+    "vyMessages": 6761,
+    "sentNotifications": 3.5,
+    "users": 11587
+  },
+  {
+    "toDate": "2025-02-03",
+    "subscriptions": 3085,
+    "vyMessages": 7011,
+    "sentNotifications": 1.8,
+    "users": 11937
+  },
+  {
+    "toDate": "2025-02-10",
+    "subscriptions": 3205,
+    "vyMessages": 7261,
+    "sentNotifications": 4.0,
+    "users": 12287
+  },
+  {
+    "toDate": "2025-02-17",
+    "subscriptions": 3325,
+    "vyMessages": 7511,
+    "sentNotifications": 2.9,
+    "users": 12637
+  },
+  {
+    "toDate": "2025-02-24",
+    "subscriptions": 3445,
+    "vyMessages": 7761,
+    "sentNotifications": 3.3,
+    "users": 12987
+  },
+  {
+    "toDate": "2025-03-03",
+    "subscriptions": 3565,
+    "vyMessages": 8011,
+    "sentNotifications": 2.0,
+    "users": 13337
+  },
+  {
+    "toDate": "2025-03-10",
+    "subscriptions": 3685,
+    "vyMessages": 8261,
+    "sentNotifications": 2.1,
+    "users": 13687
+  },
+  {
+    "toDate": "2025-03-17",
+    "subscriptions": 3805,
+    "vyMessages": 8511,
+    "sentNotifications": 3.5,
+    "users": 14037
+  },
+  {
+    "toDate": "2025-03-24",
+    "subscriptions": 3925,
+    "vyMessages": 8761,
+    "sentNotifications": 1.8,
+    "users": 14387
+  },
+  {
+    "toDate": "2025-03-31",
+    "subscriptions": 4045,
+    "vyMessages": 9011,
+    "sentNotifications": 4.0,
+    "users": 14737
+  },
+  {
+    "toDate": "2025-04-07",
+    "subscriptions": 4165,
+    "vyMessages": 9261,
+    "sentNotifications": 2.9,
+    "users": 15087
+  },
+  {
+    "toDate": "2025-04-14",
+    "subscriptions": 4285,
+    "vyMessages": 9511,
+    "sentNotifications": 3.3,
+    "users": 15437
+  },
+  {
+    "toDate": "2025-04-21",
+    "subscriptions": 4405,
+    "vyMessages": 9761,
+    "sentNotifications": 2.0,
+    "users": 15787
+  },
+  {
+    "toDate": "2025-04-28",
+    "subscriptions": 4525,
+    "vyMessages": 10011,
+    "sentNotifications": 2.1,
+    "users": 16137
+  },
+  {
+    "toDate": "2025-05-05",
+    "subscriptions": 4645,
+    "vyMessages": 10261,
+    "sentNotifications": 3.5,
+    "users": 16487
+  },
+  {
+    "toDate": "2025-05-12",
+    "subscriptions": 4765,
+    "vyMessages": 10511,
+    "sentNotifications": 1.8,
+    "users": 16837
+  },
+  {
+    "toDate": "2025-05-19",
+    "subscriptions": 4885,
+    "vyMessages": 10761,
+    "sentNotifications": 4.0,
+    "users": 17187
   }
 ]

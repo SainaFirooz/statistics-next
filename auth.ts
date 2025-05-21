@@ -21,7 +21,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
             email: process.env.ADMIN_EMAIL,
           };
         }
-        throw new Error("Invalid credentials");
+        return null;
       },
     }),
   ],

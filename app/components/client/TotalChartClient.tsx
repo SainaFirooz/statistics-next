@@ -62,7 +62,7 @@ export function TotalChartClient({ data }: ChartClientProps) {
           <>
             <text
               x={x}
-              y={y - 40}
+              y={y - 35}
               textAnchor="middle"
               dominantBaseline="middle"
               className="font-medium text-sm fill-black dark:fill-gray-100"
